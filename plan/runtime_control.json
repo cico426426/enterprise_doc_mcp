@@ -1,6 +1,12 @@
 {
   "version": 1,
   "last_updated": "2026-05-05",
+  "commit_policy": "commit_after_each_completed_phase",
+  "workflow_rules": [
+    "完成每個 phase 後必須先跑 implementation_check.validation_commands",
+    "驗證通過後必須更新 runtime_control.json 與 progress.md",
+    "每個 completed phase 必須立即 commit，禁止累積多個 phase 一次 commit"
+  ],
   "source_plan": "plan/plan.md",
   "dynamic_loader_note": "每次工作先讀本檔 current_phase 與 phase_path，再讀該 phase 檔並執行 implementation_check。",
   "current_phase": "phase-00",
