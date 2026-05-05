@@ -1,0 +1,217 @@
+{
+  "version": 1,
+  "last_updated": "2026-05-05",
+  "source_plan": "plan/plan.md",
+  "dynamic_loader_note": "每次工作先讀本檔 current_phase 與 phase_path，再讀該 phase 檔並執行 implementation_check。",
+  "current_phase": "phase-00",
+  "phases": [
+    {
+      "id": "phase-00",
+      "title": "重構與骨架",
+      "phase_path": "plan/phases/phase-00.md",
+      "status": "pending",
+      "implementation_check": {
+        "required_paths": [
+          "skills/parse_documents",
+          "skills/chunk_and_index",
+          "mcp_server",
+          "scripts",
+          "tests",
+          ".env.example"
+        ],
+        "validation_commands": [
+          "rg --files",
+          "uv run python -m py_compile $(rg --files -g '*.py')"
+        ],
+        "checked": false,
+        "checked_at": null,
+        "notes": ""
+      }
+    },
+    {
+      "id": "phase-01",
+      "title": "文字與表格基礎工具",
+      "phase_path": "plan/phases/phase-01.md",
+      "status": "pending",
+      "implementation_check": {
+        "required_paths": [
+          "skills/parse_documents/_text.py",
+          "skills/parse_documents/_table.py"
+        ],
+        "validation_commands": [
+          "uv run pytest -q tests -k 'text or table'"
+        ],
+        "checked": false,
+        "checked_at": null,
+        "notes": ""
+      }
+    },
+    {
+      "id": "phase-02",
+      "title": "Render 層",
+      "phase_path": "plan/phases/phase-02.md",
+      "status": "pending",
+      "implementation_check": {
+        "required_paths": [
+          "skills/parse_documents/_render.py"
+        ],
+        "validation_commands": [
+          "uv run pytest -q tests -k render"
+        ],
+        "checked": false,
+        "checked_at": null,
+        "notes": ""
+      }
+    },
+    {
+      "id": "phase-03",
+      "title": "Vision 分析封裝",
+      "phase_path": "plan/phases/phase-03.md",
+      "status": "pending",
+      "implementation_check": {
+        "required_paths": [
+          "skills/parse_documents/_vision.py"
+        ],
+        "validation_commands": [
+          "uv run pytest -q tests -k vision"
+        ],
+        "checked": false,
+        "checked_at": null,
+        "notes": ""
+      }
+    },
+    {
+      "id": "phase-04",
+      "title": "文件解析主流程",
+      "phase_path": "plan/phases/phase-04.md",
+      "status": "pending",
+      "implementation_check": {
+        "required_paths": [
+          "skills/parse_documents/_pdf.py",
+          "skills/parse_documents/_pptx.py",
+          "skills/parse_documents/parse.py"
+        ],
+        "validation_commands": [
+          "uv run python skills/parse_documents/parse.py --help"
+        ],
+        "checked": false,
+        "checked_at": null,
+        "notes": ""
+      }
+    },
+    {
+      "id": "phase-05",
+      "title": "Chunk / Embed / Store / Search",
+      "phase_path": "plan/phases/phase-05.md",
+      "status": "pending",
+      "implementation_check": {
+        "required_paths": [
+          "skills/chunk_and_index/_embed.py",
+          "skills/chunk_and_index/_rerank.py",
+          "skills/chunk_and_index/_store.py",
+          "skills/chunk_and_index/index.py"
+        ],
+        "validation_commands": [
+          "uv run pytest -q tests -k 'index or search or store'"
+        ],
+        "checked": false,
+        "checked_at": null,
+        "notes": ""
+      }
+    },
+    {
+      "id": "phase-06",
+      "title": "Ingest 腳本",
+      "phase_path": "plan/phases/phase-06.md",
+      "status": "pending",
+      "implementation_check": {
+        "required_paths": [
+          "scripts/ingest.py"
+        ],
+        "validation_commands": [
+          "uv run python scripts/ingest.py --help"
+        ],
+        "checked": false,
+        "checked_at": null,
+        "notes": ""
+      }
+    },
+    {
+      "id": "phase-07",
+      "title": "Retriever 評估",
+      "phase_path": "plan/phases/phase-07.md",
+      "status": "pending",
+      "implementation_check": {
+        "required_paths": [
+          "tests/eval_retriever.py"
+        ],
+        "validation_commands": [
+          "uv run python tests/eval_retriever.py"
+        ],
+        "checked": false,
+        "checked_at": null,
+        "notes": ""
+      }
+    },
+    {
+      "id": "phase-08",
+      "title": "MCP Server",
+      "phase_path": "plan/phases/phase-08.md",
+      "status": "pending",
+      "implementation_check": {
+        "required_paths": [
+          "mcp_server/_search.py",
+          "mcp_server/server.py"
+        ],
+        "validation_commands": [
+          "uv run python mcp_server/server.py"
+        ],
+        "checked": false,
+        "checked_at": null,
+        "notes": ""
+      }
+    },
+    {
+      "id": "phase-09",
+      "title": "部署檔",
+      "phase_path": "plan/phases/phase-09.md",
+      "status": "pending",
+      "implementation_check": {
+        "required_paths": [
+          "Dockerfile",
+          "zbpack.json"
+        ],
+        "validation_commands": [
+          "cat zbpack.json"
+        ],
+        "checked": false,
+        "checked_at": null,
+        "notes": ""
+      }
+    },
+    {
+      "id": "phase-10",
+      "title": "文件與驗證紀錄",
+      "phase_path": "plan/phases/phase-10.md",
+      "status": "pending",
+      "implementation_check": {
+        "required_paths": [
+          "README.md",
+          "tests/test_output.log"
+        ],
+        "validation_commands": [
+          "rg -n 'how to run|verify|assumption|AI' README.md"
+        ],
+        "checked": false,
+        "checked_at": null,
+        "notes": ""
+      }
+    }
+  ],
+  "control_setup": {
+    "status": "completed",
+    "checked": true,
+    "checked_at": "2026-05-05",
+    "notes": "phase files created and mapped"
+  }
+}
