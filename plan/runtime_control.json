@@ -9,7 +9,7 @@
   ],
   "source_plan": "plan/plan.md",
   "dynamic_loader_note": "每次工作先讀本檔 current_phase 與 phase_path，再讀該 phase 檔並執行 implementation_check。",
-  "current_phase": "phase-06",
+  "current_phase": "phase-07",
   "phases": [
     {
       "id": "phase-00",
@@ -129,7 +129,7 @@
       "id": "phase-06",
       "title": "Ingest 腳本",
       "phase_path": "plan/phases/phase-06.md",
-      "status": "pending",
+      "status": "completed",
       "implementation_check": {
         "required_paths": [
           "scripts/ingest.py"
@@ -137,9 +137,9 @@
         "validation_commands": [
           "uv run python scripts/ingest.py --help"
         ],
-        "checked": false,
-        "checked_at": null,
-        "notes": ""
+        "checked": true,
+        "checked_at": "2026-05-05",
+        "notes": "ingest CLI implemented and tests passed; --help works. Real ingest run attempted with --reset --no-vision but blocked by model download DNS failure to huggingface (processed=0, failed=2)"
       }
     },
     {
