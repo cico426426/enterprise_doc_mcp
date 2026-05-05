@@ -9,13 +9,13 @@
   ],
   "source_plan": "plan/plan.md",
   "dynamic_loader_note": "每次工作先讀本檔 current_phase 與 phase_path，再讀該 phase 檔並執行 implementation_check。",
-  "current_phase": "phase-00",
+  "current_phase": "phase-01",
   "phases": [
     {
       "id": "phase-00",
       "title": "重構與骨架",
       "phase_path": "plan/phases/phase-00.md",
-      "status": "pending",
+      "status": "completed",
       "implementation_check": {
         "required_paths": [
           "skills/parse_documents",
@@ -29,9 +29,9 @@
           "rg --files",
           "uv run python -m py_compile $(rg --files -g '*.py')"
         ],
-        "checked": false,
-        "checked_at": null,
-        "notes": ""
+        "checked": true,
+        "checked_at": "2026-05-05",
+        "notes": "rg --files passed; uv unavailable in agent shell, equivalent check run with .venv/bin/python -m py_compile"
       }
     },
     {

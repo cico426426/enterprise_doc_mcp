@@ -16,6 +16,7 @@
 
 | Date | Phase | Status | Plan Conformance Check | Notes |
 |---|---|---|---|---|
+| 2026-05-05 | phase-00 | completed | 相依套件已補齊；目錄骨架與 `.env.example` 已建立；`runtime_control.json` phase-00 檢查欄位已更新 | `current_phase` 已推進至 `phase-01` |
 | 2026-05-05 | policy-hardening | completed | `AGENTS.md` 新增 phase commit 合約，`runtime_control.json` 新增 commit_policy/workflow_rules | 後續採「每個 completed phase 立即 commit」 |
 | 2026-05-05 | planning-bootstrap | completed | 檢查 `plan/phases/*.md` 與 `runtime_control.json` 對應一致，JSON 驗證通過 | 已建立分階段計畫、動態載入入口與進度控管機制 |
-| 2026-05-05 | phase-00 ~ phase-10 | pending | N/A | 尚未開始功能實作 |
+| 2026-05-05 | phase-01 ~ phase-10 | pending | N/A | 尚未開始功能實作 |
