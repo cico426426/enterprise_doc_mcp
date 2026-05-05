@@ -9,7 +9,7 @@
   ],
   "source_plan": "plan/plan.md",
   "dynamic_loader_note": "每次工作先讀本檔 current_phase 與 phase_path，再讀該 phase 檔並執行 implementation_check。",
-  "current_phase": "phase-04",
+  "current_phase": "phase-05",
   "phases": [
     {
       "id": "phase-00",
@@ -90,7 +90,7 @@
       "id": "phase-04",
       "title": "文件解析主流程",
       "phase_path": "plan/phases/phase-04.md",
-      "status": "pending",
+      "status": "completed",
       "implementation_check": {
         "required_paths": [
           "skills/parse_documents/_pdf.py",
@@ -100,9 +100,9 @@
         "validation_commands": [
           "uv run python skills/parse_documents/parse.py --help"
         ],
-        "checked": false,
-        "checked_at": null,
-        "notes": ""
+        "checked": true,
+        "checked_at": "2026-05-05",
+        "notes": "parse pipeline implemented for pdf/pptx with CLI; --help works; real data parse succeeded (pdf=65 records, pptx=13 records) with --no-vision; stdout JSON pollution from PyMuPDF table hint handled by local redirect"
       }
     },
     {
