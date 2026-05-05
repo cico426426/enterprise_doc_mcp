@@ -9,7 +9,7 @@
   ],
   "source_plan": "plan/plan.md",
   "dynamic_loader_note": "每次工作先讀本檔 current_phase 與 phase_path，再讀該 phase 檔並執行 implementation_check。",
-  "current_phase": "phase-05",
+  "current_phase": "phase-06",
   "phases": [
     {
       "id": "phase-00",
@@ -109,7 +109,7 @@
       "id": "phase-05",
       "title": "Chunk / Embed / Store / Search",
       "phase_path": "plan/phases/phase-05.md",
-      "status": "pending",
+      "status": "completed",
       "implementation_check": {
         "required_paths": [
           "skills/chunk_and_index/_embed.py",
@@ -120,9 +120,9 @@
         "validation_commands": [
           "uv run pytest -q tests -k 'index or search or store'"
         ],
-        "checked": false,
-        "checked_at": null,
-        "notes": ""
+        "checked": true,
+        "checked_at": "2026-05-05",
+        "notes": "chunk/embed/store/index modules implemented with mock-based unit tests; tests passed via .venv/bin/python -m unittest -q tests/test_index_store.py; uv command unavailable in agent shell"
       }
     },
     {
