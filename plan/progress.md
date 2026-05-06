@@ -16,6 +16,7 @@
 
 | Date | Phase | Status | Plan Conformance Check | Notes |
 |---|---|---|---|---|
+| 2026-05-06 | phase-08 | completed | `mcp_server/_search.py` 與 `mcp_server/server.py` 已完成；`tests/test_mcp_server.py` 4 tests 全過；server import/py_compile 通過 | `uv run python mcp_server/server.py` 可啟動；`/health` 回 `{"status":"ok","has_data":true}`；MCP streamable HTTP client 可列出 `search` / `search_by_source` / `list_documents` 並呼叫 `list_documents`；未 commit，等待使用者同意 |
 | 2026-05-06 | phase-07-ragas | completed | `tests/eval_retriever.py` 已改為 Ragas context judge；只評估 retriever 需要的 `context_precision` / `context_recall`；`tests/test_eval_retriever.py` 3 tests 全過；live eval 成功 | MVP hard gate 改為 context_recall>=0.9 與 source_top1_rate>=0.8；live Ragas eval：context_precision=0.5528、context_recall=1.0、source_top1_rate=1.0；precision 作後續 tuning target；未 commit，等待使用者同意 |
 | 2026-05-06 | commit-policy-update | completed | `AGENTS.md`、`runtime_control.json`、`plan/plan.md` 與所有 `plan/phases/phase-*.md` 已改為 commit 前需使用者明確同意 | 本次僅更新流程規則；未 commit；git history 調整需另行取得明確指令與批准 |
 | 2026-05-05 | phase-07 | completed | `tests/eval_retriever.py` 已完成（固定 query、hit_rate、run_eval、JSON output）；`tests/test_eval_retriever.py` 3 tests 全過 | live eval 已可執行並產生有效分數；後續會持續優化評估方法與檢索品質；`current_phase` 已推進至 `phase-08` |

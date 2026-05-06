@@ -165,7 +165,7 @@
       "id": "phase-08",
       "title": "MCP Server",
       "phase_path": "plan/phases/phase-08.md",
-      "status": "pending",
+      "status": "completed",
       "implementation_check": {
         "required_paths": [
           "mcp_server/_search.py",
@@ -174,9 +174,9 @@
         "validation_commands": [
           "uv run python mcp_server/server.py"
         ],
-        "checked": false,
-        "checked_at": null,
-        "notes": ""
+        "checked": true,
+        "checked_at": "2026-05-06",
+        "notes": "FastMCP streamable HTTP server implemented with search/search_by_source/list_documents tools, docs://sources resource, and /health route. Validation: unit tests passed; server started via uv run python mcp_server/server.py; /health returned status ok; MCP streamable HTTP client listed tools and called list_documents successfully. Server was stopped with Ctrl+C after validation."
       }
     },
     {
