@@ -11,7 +11,7 @@
   ],
   "source_plan": "plan/plan.md",
   "dynamic_loader_note": "每次工作先讀本檔 current_phase 與 phase_path，再讀該 phase 檔並執行 implementation_check。",
-  "current_phase": "phase-08",
+  "current_phase": "phase-10",
   "phases": [
     {
       "id": "phase-00",
@@ -183,7 +183,7 @@
       "id": "phase-09",
       "title": "部署檔",
       "phase_path": "plan/phases/phase-09.md",
-      "status": "pending",
+      "status": "completed",
       "implementation_check": {
         "required_paths": [
           "Dockerfile",
@@ -192,9 +192,9 @@
         "validation_commands": [
           "cat zbpack.json"
         ],
-        "checked": false,
-        "checked_at": null,
-        "notes": ""
+        "checked": true,
+        "checked_at": "2026-05-06",
+        "notes": "Dockerfile and zbpack.json added. Validation command cat zbpack.json passed; JSON parsed successfully; ingest --help and py_compile for ingest/server passed. ragas moved to the eval dependency group, and Docker production sync excludes eval-only dependencies with --no-group eval to reduce build time. docker build -t enterprise-doc-mcp . completed; docker run with mounted chroma returned /health status ok with has_data=true; MCP streamable HTTP client listed tools and called list_documents successfully. current_phase advanced to phase-10."
       }
     },
     {

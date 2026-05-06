@@ -1,0 +1,4 @@
+{
+  "build_command": "uv run python scripts/ingest.py --skip-if-exists --no-vision",
+  "start_command": "uv run python mcp_server/server.py"
+}
