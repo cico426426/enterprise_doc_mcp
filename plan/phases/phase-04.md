@@ -16,3 +16,6 @@
 
 ## 完成條件
 - 對 `data/` 內兩份檔案可成功輸出 JSON records
+
+## Commit Gate
+- 驗證通過並更新進度紀錄後，必須等待使用者明確同意才可 commit。

@@ -1,11 +1,13 @@
 {
   "version": 1,
-  "last_updated": "2026-05-05",
-  "commit_policy": "commit_after_each_completed_phase",
+  "last_updated": "2026-05-06",
+  "commit_policy": "user_approval_required_for_each_phase_commit",
   "workflow_rules": [
     "完成每個 phase 後必須先跑 implementation_check.validation_commands",
     "驗證通過後必須更新 runtime_control.json 與 progress.md",
-    "每個 completed phase 必須立即 commit，禁止累積多個 phase 一次 commit"
+    "每個 completed phase 驗證通過後必須等待使用者明確同意才可 commit",
+    "禁止自動 commit；commit 前需向使用者說明檔案範圍與 commit message",
+    "禁止未經使用者明確同意重寫 git history"
   ],
   "source_plan": "plan/plan.md",
   "dynamic_loader_note": "每次工作先讀本檔 current_phase 與 phase_path，再讀該 phase 檔並執行 implementation_check。",
@@ -156,7 +158,7 @@
         ],
         "checked": true,
         "checked_at": "2026-05-05",
-        "notes": "eval_retriever implemented with fixed query set, hit_rate, run_eval and JSON output; logic unit tests passed. Live eval execution works but model downloads blocked by DNS to huggingface, so current hit_rate output is 0.0 in this environment"
+        "notes": "eval_retriever upgraded from keyword hit_rate to Ragas LLM-as-judge context_precision/context_recall; unit tests pass with fake judge. Live Ragas eval loads .env with python-dotenv and passed MVP hard gate with context_recall=1.0 and source_top1_rate=1.0. context_precision=0.5528 is recorded as a diagnostic metric and future tuning target."
       }
     },
     {

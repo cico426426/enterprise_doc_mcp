@@ -16,7 +16,9 @@
 
 | Date | Phase | Status | Plan Conformance Check | Notes |
 |---|---|---|---|---|
-| 2026-05-05 | phase-07 | completed | `tests/eval_retriever.py` 已完成（固定 query、hit_rate、run_eval、JSON output）；`tests/test_eval_retriever.py` 3 tests 全過 | live eval 可執行但受 DNS 限制無法下載 embedding model，當前 hit_rate=0.0；`current_phase` 已推進至 `phase-08` |
+| 2026-05-06 | phase-07-ragas | completed | `tests/eval_retriever.py` 已改為 Ragas context judge；只評估 retriever 需要的 `context_precision` / `context_recall`；`tests/test_eval_retriever.py` 3 tests 全過；live eval 成功 | MVP hard gate 改為 context_recall>=0.9 與 source_top1_rate>=0.8；live Ragas eval：context_precision=0.5528、context_recall=1.0、source_top1_rate=1.0；precision 作後續 tuning target；未 commit，等待使用者同意 |
+| 2026-05-06 | commit-policy-update | completed | `AGENTS.md`、`runtime_control.json`、`plan/plan.md` 與所有 `plan/phases/phase-*.md` 已改為 commit 前需使用者明確同意 | 本次僅更新流程規則；未 commit；git history 調整需另行取得明確指令與批准 |
+| 2026-05-05 | phase-07 | completed | `tests/eval_retriever.py` 已完成（固定 query、hit_rate、run_eval、JSON output）；`tests/test_eval_retriever.py` 3 tests 全過 | live eval 已可執行並產生有效分數；後續會持續優化評估方法與檢索品質；`current_phase` 已推進至 `phase-08` |
 | 2026-05-05 | phase-06 | completed | `scripts/ingest.py` 已完成，`--help` 與 `tests/test_ingest.py` 皆通過 | 實際 ingest 嘗試受環境 DNS 限制（無法下載 embedding 模型），已記錄風險並推進至 `phase-07` |
 | 2026-05-05 | phase-05 | completed | `_embed.py` / `_rerank.py` / `_store.py` / `index.py` 已完成；`tests/test_index_store.py` 6 tests 全過 | `current_phase` 已推進至 `phase-06` |
 | 2026-05-05 | phase-04 | completed | `_pdf.py` / `_pptx.py` / `parse.py` 已完成；CLI help 正常；真實資料 smoke：PDF=65、PPTX=13 records | `current_phase` 已推進至 `phase-05` |
@@ -24,6 +26,6 @@
 | 2026-05-05 | phase-02 | completed | `_render.py` 已實作；`tests/test_render.py` 4 tests 全過；型別與錯誤行為符合規格 | `current_phase` 已推進至 `phase-03` |
 | 2026-05-05 | phase-01 | completed | `_text.py` / `_table.py` 介面已對齊規格；`tests/test_text_table.py` 6 tests 全過 | `current_phase` 已推進至 `phase-02` |
 | 2026-05-05 | phase-00 | completed | 相依套件已補齊；目錄骨架與 `.env.example` 已建立；`runtime_control.json` phase-00 檢查欄位已更新 | `current_phase` 已推進至 `phase-01` |
-| 2026-05-05 | policy-hardening | completed | `AGENTS.md` 新增 phase commit 合約，`runtime_control.json` 新增 commit_policy/workflow_rules | 後續採「每個 completed phase 立即 commit」 |
+| 2026-05-05 | policy-hardening | superseded | `AGENTS.md` 新增 phase commit 合約，`runtime_control.json` 新增 commit_policy/workflow_rules | 原「每個 completed phase 立即 commit」已於 2026-05-06 改為「每次 commit 均需使用者明確同意」 |
 | 2026-05-05 | planning-bootstrap | completed | 檢查 `plan/phases/*.md` 與 `runtime_control.json` 對應一致，JSON 驗證通過 | 已建立分階段計畫、動態載入入口與進度控管機制 |
 | 2026-05-05 | phase-08 ~ phase-10 | pending | N/A | 尚未開始功能實作 |

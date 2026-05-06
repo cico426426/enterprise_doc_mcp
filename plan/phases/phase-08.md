@@ -13,3 +13,6 @@
 
 ## 完成條件
 - 本地 HTTP 模式可被 client script 成功呼叫
+
+## Commit Gate
+- 驗證通過並更新進度紀錄後，必須等待使用者明確同意才可 commit。

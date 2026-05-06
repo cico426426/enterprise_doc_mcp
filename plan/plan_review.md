@@ -7,7 +7,7 @@
 3. `uv run pytest -q tests -k ...` 這類驗證命令在早期 phase 尚未有測試檔時會失敗，需在 phase 0/1 先補最小 smoke tests。
 4. `Anthropic` 模型字串 `claude-haiku-4-5-20251001` 可能隨 API 版本調整；建議把模型名交給 env 並在啟動時檢查。
 5. `scripts/ingest.py --skip-if-exists` 在資料更新但 collection 已有資料時會跳過重建，建議加入 source checksum/mtime 判斷。
-6. `Phase 7` 以 `hit_rate > 0.8` 為硬門檻，資料集小時有機率波動；建議同時記錄 top-k 來源一致率與 query-level錯誤分析。
+6. `Phase 7` 已從 keyword `hit_rate` 改為 Ragas `context_precision` / `context_recall`；MVP hard gate 以 `context_recall` 與 `source_top1_rate` 為準，`context_precision` 作為 top-k 雜訊診斷與後續 tuning 目標。
 
 ## 建議方向
 

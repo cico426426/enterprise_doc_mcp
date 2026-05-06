@@ -17,3 +17,6 @@
 
 ## 完成條件
 - `index_records()` 與 `search_records()` 可端到端跑通
+
+## Commit Gate
+- 驗證通過並更新進度紀錄後，必須等待使用者明確同意才可 commit。
