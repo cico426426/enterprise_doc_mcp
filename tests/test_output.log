@@ -1,0 +1,95 @@
+EnterpriseDocMcp verification log
+Date: 2026-05-06
+Note:
+  This is a manually curated verification log copied from local command outputs.
+  It is not generated automatically by the application.
+
+1. Parser and utility tests
+Command:
+  uv run python -m unittest -q tests/test_text_table.py tests/test_render.py tests/test_vision.py tests/test_parse_documents.py tests/test_index_store.py tests/test_ingest.py
+Output:
+  The parser/index/ingest unit tests passed during phase implementation.
+  Individual phase command records are tracked in plan/progress.md.
+
+2. Retriever eval unit tests
+Command:
+  uv run --group eval python -m unittest -q tests/test_eval_retriever.py
+Output:
+  Ran 3 tests in ~1.5s
+  OK
+
+3. Live Ragas retriever evaluation
+Command:
+  uv run python tests/eval_retriever.py
+Output:
+  context_precision: 0.5528
+  context_recall: 1.0
+  ragas_context_score: 0.7764
+  source_top1_rate: 1.0
+  evaluated_queries: 6
+Notes:
+  MVP hard gate uses context_recall >= 0.9 and source_top1_rate >= 0.8.
+  context_precision is recorded as a diagnostic metric and future tuning target.
+
+4. MCP unit tests
+Command:
+  uv run python -m unittest -q tests/test_mcp_server.py
+Output:
+  Ran 4 tests in ~0.003s
+  OK
+
+5. Local MCP HTTP validation
+Command:
+  uv run python mcp_server/server.py
+  curl http://127.0.0.1:8000/health
+Output:
+  {"status":"ok","has_data":true}
+
+6. Local MCP client validation
+Command:
+  streamable HTTP client against http://127.0.0.1:8000/mcp
+Output:
+  tools: ['search', 'search_by_source', 'list_documents']
+  list_documents call succeeded.
+
+7. Docker build validation
+Command:
+  docker build -t enterprise-doc-mcp .
+Output:
+  Build completed successfully.
+
+8. Docker run health validation
+Command:
+  docker run -d --name enterprise-doc-mcp -p 8000:8000 -v "$PWD/chroma:/app/chroma" -e CHROMA_PATH=/app/chroma -e HOST=0.0.0.0 -e PORT=8000 enterprise-doc-mcp
+  curl http://127.0.0.1:8000/health
+Output:
+  {"status":"ok","has_data":true}
+
+9. Docker MCP client validation
+Command:
+  streamable HTTP client against http://127.0.0.1:8000/mcp
+Output:
+  tools: ['search', 'search_by_source', 'list_documents']
+  list_documents returned:
+    GEP-June-2024-Presentation.pptx, pptx, chunk_count=13
+    tsla-20231231-gen.pdf, pdf, chunk_count=284
+
+10. Deployment status
+Zeabur public URL:
+  Pending Zeabur deployment.
+
+11. Task requirement mapping
+Unstructured data pipeline:
+  Implemented via scripts/ingest.py, skills/parse_documents, and skills/chunk_and_index.
+Remote MCP server:
+  Implemented via mcp_server/server.py and mcp_server/_search.py.
+Verifiable MCP retrieval:
+  Docker MCP client listed tools and list_documents returned both indexed files.
+AI workflow:
+  Phase records are tracked in plan/runtime_control.json and plan/progress.md.
+Git evidence:
+  Commit history is phase-oriented and suitable for review.
+Deploy online:
+  Docker and Zeabur config are present; public URL pending final Zeabur deployment.
+No confidential material:
+  Secrets are excluded through .gitignore; sample/public data only.

@@ -1,0 +1,22 @@
+Task options
+
+Please complete at least one task. Completing more than one is a plus.
+
+Unstructured Data Pipeline & Remote MCP Server
+Build a data processing pipeline that ingests simulated, messy enterprise documents (e.g., a multi-page PDF containing tables/headers, and a PPTX slide deck). The script must extract, clean, and appropriately chunk the content. Next, package this searchable knowledge base into a remote Model Context Protocol (MCP) server. Expose specific tools or resources via the MCP server so that a standard LLM agent (e.g., Claude Desktop or a custom agent script) can connect and query the extracted information. Provide verifiable outputs (e.g., an MCP client test script, example queries, or server logs proving successful data retrieval).
+
+Data Preprocessing as Claude Skills
+Package the unstructured data preprocessing capabilities (like parsing PDFs or PPTX files, cleaning text, and structured formatting) into reusable Skills. Ensure that these Skills have clear inputs/outputs, a safe execution boundary, and can be easily installed and invoked by Claude Code. Provide verifiable outputs (e.g., run logs, terminal screenshots, or a recorded demo showing Claude Code successfully executing the Skill). Skills reference (optional): https://kaochenlong.com/claude-code-skills
+
+Browser automation agent task
+Build an agent that can reliably drive a browser workflow (e.g., generating a slide deck via NotebookLM, or another general browser task), and provide verifiable outputs plus run logs.
+
+ 
+
+Requirements (apply to all tasks)
+
+AI-only workflow: Complete the work using AI coding tools or an agent workflow (Claude Code is preferred). Using Skills is a plus: https://kaochenlong.com/claude-code-skills
+Git evidence: Provide a repo with meaningful commit history that reflects your process.
+Deploy online: Deploy to a public URL (e.g., Zeabur or equivalent).
+Documentation: Include a short README with how to run/verify, key assumptions, and how you used the AI/agent workflow.
+No confidential material: Use only public or self-created code/data.
