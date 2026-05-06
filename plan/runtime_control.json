@@ -9,7 +9,7 @@
   ],
   "source_plan": "plan/plan.md",
   "dynamic_loader_note": "每次工作先讀本檔 current_phase 與 phase_path，再讀該 phase 檔並執行 implementation_check。",
-  "current_phase": "phase-07",
+  "current_phase": "phase-08",
   "phases": [
     {
       "id": "phase-00",
@@ -146,7 +146,7 @@
       "id": "phase-07",
       "title": "Retriever 評估",
       "phase_path": "plan/phases/phase-07.md",
-      "status": "pending",
+      "status": "completed",
       "implementation_check": {
         "required_paths": [
           "tests/eval_retriever.py"
@@ -154,9 +154,9 @@
         "validation_commands": [
           "uv run python tests/eval_retriever.py"
         ],
-        "checked": false,
-        "checked_at": null,
-        "notes": ""
+        "checked": true,
+        "checked_at": "2026-05-05",
+        "notes": "eval_retriever implemented with fixed query set, hit_rate, run_eval and JSON output; logic unit tests passed. Live eval execution works but model downloads blocked by DNS to huggingface, so current hit_rate output is 0.0 in this environment"
       }
     },
     {
