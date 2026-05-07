@@ -11,7 +11,7 @@
   ],
   "source_plan": "plan/plan.md",
   "dynamic_loader_note": "每次工作先讀本檔 current_phase 與 phase_path，再讀該 phase 檔並執行 implementation_check。",
-  "current_phase": "phase-12",
+  "current_phase": "phase-14",
   "phases": [
     {
       "id": "phase-00",
@@ -240,56 +240,64 @@
       "id": "phase-12",
       "title": "Claude Skills Packaging",
       "phase_path": "plan/phases/phase-12.md",
-      "status": "pending",
+      "status": "completed",
       "implementation_check": {
         "required_paths": [
           ".claude/skills/parse-enterprise-documents/SKILL.md",
-          ".claude/skills/index-enterprise-documents/SKILL.md"
+          ".claude/skills/parse-enterprise-documents/scripts/parse.py",
+          ".claude/skills/index-enterprise-documents/SKILL.md",
+          ".claude/skills/index-enterprise-documents/scripts/ingest.py"
         ],
         "validation_commands": [
-          "rg -n 'name:|description:|Inputs|Outputs|Safe Execution Boundary|uv run python|--no-vision' .claude/skills"
+          "rg -n 'name:|description:|Inputs|Outputs|Safe Execution Boundary|Commands' .claude/skills/*/SKILL.md",
+          "find .claude/skills/*/scripts \\( -name '*.py' -type f -o -name '*.py' -type l \\)",
+          "rg '\\$\\{CLAUDE_SKILL_DIR\\}' .claude/skills/*/SKILL.md",
+          "rg -l 'allowed-tools: Bash\\(uv run python \\*\\)' .claude/skills/*/SKILL.md"
         ],
-        "checked": false,
-        "checked_at": null,
-        "notes": ""
+        "checked": true,
+        "checked_at": "2026-05-07",
+        "notes": "Refactored to follow Claude Code Skills pattern: scripts/ directories with symlinks, ${CLAUDE_SKILL_DIR} variable usage, allowed-tools frontmatter, and direct command examples instead of wrapper scripts. Commands now use uv run python so project dependencies are available. Index Skill explicitly says not to run parse first for indexing and accepts --source-dir as a compatibility alias for --data-dir."
       }
     },
     {
       "id": "phase-13",
       "title": "Skill Verification Evidence",
       "phase_path": "plan/phases/phase-13.md",
-      "status": "pending",
+      "status": "completed",
       "implementation_check": {
         "required_paths": [
           "tests/test_claude_skills.py",
-          "tests/skill_output.log"
+          "tests/skill_execution.log"
         ],
         "validation_commands": [
           "uv run python -m unittest -q tests/test_claude_skills.py",
-          "uv run python skills/parse_documents/parse.py --file data/GEP-June-2024-Presentation.pptx --type pptx --no-vision",
-          "uv run python scripts/ingest.py --skip-if-exists --no-vision"
+          "uv run python -m unittest -q tests/test_parse_documents.py",
+          "uv run python .claude/skills/parse-enterprise-documents/scripts/parse.py --source-dir tests/fixtures/task2-input --no-vision",
+          "env CHROMA_PATH=.cache/task2-skill-chroma uv run python .claude/skills/index-enterprise-documents/scripts/ingest.py --data-dir tests/fixtures/task2-input --reset --no-vision",
+          "uv run python .claude/skills/index-enterprise-documents/scripts/ingest.py --help",
+          "uv run python .claude/skills/parse-enterprise-documents/scripts/parse.py --help"
         ],
-        "checked": false,
-        "checked_at": null,
-        "notes": ""
+        "checked": true,
+        "checked_at": "2026-05-07",
+        "notes": "Refactored to match Skills script pattern: tests verify structure (scripts/, ${CLAUDE_SKILL_DIR}, allowed-tools), execution commands follow SKILL.md examples through uv run python, and log renamed to skill_execution.log. Added common directory aliases (--data-dir, --source-dir, --input-dir) across parse and index CLIs to prevent parameter mismatch."
       }
     },
     {
       "id": "phase-14",
       "title": "Task 2 README Documentation",
       "phase_path": "plan/phases/phase-14.md",
-      "status": "pending",
+      "status": "completed",
       "implementation_check": {
         "required_paths": [
           "README.md",
-          "tests/skill_output.log"
+          "tests/skill_execution.log"
         ],
         "validation_commands": [
-          "rg -n 'Task 1|Task 2|Claude Skills|skill_output|Safe' README.md"
+          "rg -n 'Task 1|Task 2|Claude Skills|skill_execution|Safe|uv run python|--source-dir|--input-dir' README.md"
         ],
-        "checked": false,
-        "checked_at": null,
-        "notes": ""
+        "checked": true,
+        "checked_at": "2026-05-07",
+        "notes": "README Task 2 section clarified the Claude Skills packaging boundary, script-based Skill execution evidence, uv run python dependency environment, committed fixture inputs, and stricter guidance to avoid running parse before index requests. Validation passed: README rg check, runtime_control JSON parse, and uv run python -m unittest -q tests/test_claude_skills.py."
       }
     }
   ],
