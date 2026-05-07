@@ -201,7 +201,7 @@
       "id": "phase-10",
       "title": "文件與驗證紀錄",
       "phase_path": "plan/phases/phase-10.md",
-      "status": "in_progress",
+      "status": "completed",
       "implementation_check": {
         "required_paths": [
           "README.md",
@@ -212,7 +212,7 @@
         ],
         "checked": true,
         "checked_at": "2026-05-07",
-        "notes": "README.md and tests/test_output.log added; README validation command passes and includes run, verify, assumptions, AI workflow, Docker, MCP, and Zeabur instructions. Public Zeabur URL is available at https://enterprise-doc-mcp-yonghuei.zeabur.app/, but first health check returned has_data=false because the Docker deployment started with an empty Chroma volume. Added scripts/start_server.py and changed Docker CMD so startup ingest runs before server start. py_compile and ingest/MCP unit tests pass. Phase remains in_progress until redeployed health check returns has_data=true."
+        "notes": "README.md and tests/test_output.log added; README validation command passes and includes run, verify, assumptions, AI workflow, Docker, MCP, and Zeabur instructions. Public Zeabur URL is available at https://enterprise-doc-mcp-yonghuei.zeabur.app/. Added scripts/start_server.py and changed Docker CMD so startup ingest runs before server start. py_compile and ingest/MCP unit tests pass. Redeployed health check returned {\"status\":\"ok\",\"has_data\":true}; phase-10 completed."
       }
     }
   ],

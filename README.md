@@ -63,6 +63,12 @@ Streamable HTTP endpoint:
 http://127.0.0.1:8000/mcp
 ```
 
+Public endpoint:
+
+```text
+https://enterprise-doc-mcp-yonghuei.zeabur.app/mcp
+```
+
 Exposed tools:
 
 - `search(query: str, top_k: int = 5)`
@@ -87,7 +93,15 @@ Cline remote MCP server example:
 Example queries:
 
 ```text
+What documents are indexed?
+```
+
+```text
 What does the World Bank presentation say about global growth?
+```
+
+```text
+What downside risks does the World Bank presentation mention?
 ```
 
 ```text
@@ -97,6 +111,12 @@ What was Tesla's 2023 total revenue?
 ```text
 Find risks related to Tesla litigation.
 ```
+
+```text
+Find Tesla product liability risks.
+```
+
+These examples cover both indexed documents and show source-grounded retrieval across presentation slides, financial reports, and risk-related sections.
 
 ## Verify
 
