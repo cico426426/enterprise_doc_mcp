@@ -11,7 +11,7 @@
   ],
   "source_plan": "plan/plan.md",
   "dynamic_loader_note": "每次工作先讀本檔 current_phase 與 phase_path，再讀該 phase 檔並執行 implementation_check。",
-  "current_phase": "phase-10",
+  "current_phase": "phase-12",
   "phases": [
     {
       "id": "phase-00",
@@ -213,6 +213,83 @@
         "checked": true,
         "checked_at": "2026-05-07",
         "notes": "README.md and tests/test_output.log added; README validation command passes and includes run, verify, assumptions, AI workflow, Docker, MCP, and Zeabur instructions. Public Zeabur URL is available at https://enterprise-doc-mcp-yonghuei.zeabur.app/. Added scripts/start_server.py and changed Docker CMD so startup ingest runs before server start. py_compile and ingest/MCP unit tests pass. Redeployed health check returned {\"status\":\"ok\",\"has_data\":true}; phase-10 completed."
+      }
+    },
+    {
+      "id": "phase-11",
+      "title": "Task 2 Planning And Boundaries",
+      "phase_path": "plan/phases/phase-11.md",
+      "status": "completed",
+      "implementation_check": {
+        "required_paths": [
+          "plan/phases/phase-11.md",
+          "plan/phases/phase-12.md",
+          "plan/phases/phase-13.md",
+          "plan/phases/phase-14.md"
+        ],
+        "validation_commands": [
+          "python3 -m json.tool plan/runtime_control.json",
+          "rg -n 'phase-1[1-4]|Task 2|Claude Skills' plan"
+        ],
+        "checked": true,
+        "checked_at": "2026-05-07",
+        "notes": "Task 2 planning phase completed. Scope separates Task 1 remote MCP delivery from Task 2 Claude Skills packaging. Phases 12-14 were created for Skill files, verification evidence, and README documentation. No .claude/skills implementation files were added in phase-11."
+      }
+    },
+    {
+      "id": "phase-12",
+      "title": "Claude Skills Packaging",
+      "phase_path": "plan/phases/phase-12.md",
+      "status": "pending",
+      "implementation_check": {
+        "required_paths": [
+          ".claude/skills/parse-enterprise-documents/SKILL.md",
+          ".claude/skills/index-enterprise-documents/SKILL.md"
+        ],
+        "validation_commands": [
+          "rg -n 'name:|description:|Inputs|Outputs|Safe Execution Boundary|uv run python|--no-vision' .claude/skills"
+        ],
+        "checked": false,
+        "checked_at": null,
+        "notes": ""
+      }
+    },
+    {
+      "id": "phase-13",
+      "title": "Skill Verification Evidence",
+      "phase_path": "plan/phases/phase-13.md",
+      "status": "pending",
+      "implementation_check": {
+        "required_paths": [
+          "tests/test_claude_skills.py",
+          "tests/skill_output.log"
+        ],
+        "validation_commands": [
+          "uv run python -m unittest -q tests/test_claude_skills.py",
+          "uv run python skills/parse_documents/parse.py --file data/GEP-June-2024-Presentation.pptx --type pptx --no-vision",
+          "uv run python scripts/ingest.py --skip-if-exists --no-vision"
+        ],
+        "checked": false,
+        "checked_at": null,
+        "notes": ""
+      }
+    },
+    {
+      "id": "phase-14",
+      "title": "Task 2 README Documentation",
+      "phase_path": "plan/phases/phase-14.md",
+      "status": "pending",
+      "implementation_check": {
+        "required_paths": [
+          "README.md",
+          "tests/skill_output.log"
+        ],
+        "validation_commands": [
+          "rg -n 'Task 1|Task 2|Claude Skills|skill_output|Safe' README.md"
+        ],
+        "checked": false,
+        "checked_at": null,
+        "notes": ""
       }
     }
   ],
