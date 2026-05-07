@@ -11,7 +11,7 @@
   ],
   "source_plan": "plan/plan.md",
   "dynamic_loader_note": "每次工作先讀本檔 current_phase 與 phase_path，再讀該 phase 檔並執行 implementation_check。",
-  "current_phase": "phase-13",
+  "current_phase": "phase-14",
   "phases": [
     {
       "id": "phase-00",
@@ -263,20 +263,23 @@
       "id": "phase-13",
       "title": "Skill Verification Evidence",
       "phase_path": "plan/phases/phase-13.md",
-      "status": "pending",
+      "status": "completed",
       "implementation_check": {
         "required_paths": [
           "tests/test_claude_skills.py",
-          "tests/skill_output.log"
+          "tests/skill_execution.log"
         ],
         "validation_commands": [
           "uv run python -m unittest -q tests/test_claude_skills.py",
-          "uv run python skills/parse_documents/parse.py --file data/GEP-June-2024-Presentation.pptx --type pptx --no-vision",
-          "uv run python scripts/ingest.py --skip-if-exists --no-vision"
+          "uv run python -m unittest -q tests/test_parse_documents.py",
+          "uv run python .claude/skills/parse-enterprise-documents/scripts/parse.py --source-dir tests/fixtures/task2-input --no-vision",
+          "env CHROMA_PATH=.cache/task2-skill-chroma uv run python .claude/skills/index-enterprise-documents/scripts/ingest.py --data-dir tests/fixtures/task2-input --reset --no-vision",
+          "uv run python .claude/skills/index-enterprise-documents/scripts/ingest.py --help",
+          "uv run python .claude/skills/parse-enterprise-documents/scripts/parse.py --help"
         ],
-        "checked": false,
-        "checked_at": null,
-        "notes": ""
+        "checked": true,
+        "checked_at": "2026-05-07",
+        "notes": "Refactored to match Skills script pattern: tests verify structure (scripts/, ${CLAUDE_SKILL_DIR}, allowed-tools), execution commands follow SKILL.md examples through uv run python, and log renamed to skill_execution.log. Added common directory aliases (--data-dir, --source-dir, --input-dir) across parse and index CLIs to prevent parameter mismatch."
       }
     },
     {

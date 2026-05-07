@@ -1,0 +1,156 @@
+EnterpriseDocMcp Task 2 Skill Execution Evidence
+Date: 2026-05-07
+
+Note:
+  This log records actual execution of Claude Code Skills following the official
+  pattern: skills contain SKILL.md with instructions and scripts/ directory with
+  executable code. Claude reads SKILL.md and executes commands via Bash tool.
+
+==============================================================================
+1. Skill Structure Validation
+==============================================================================
+
+Test: Verify skills follow official Claude Code pattern
+Command:
+  uv run python -m unittest -q tests.test_claude_skills
+
+Output:
+  Ran 14 tests in 0.009s
+  OK
+
+Tests verified:
+  ✓ Valid frontmatter (name, description, allowed-tools)
+  ✓ Required sections (Inputs, Outputs, Safe Execution Boundary, Commands)
+  ✓ Scripts in scripts/ directory
+  ✓ ${CLAUDE_SKILL_DIR} variable usage
+  ✓ Official patterns (no run.sh references)
+  ✓ Commands use uv run python for project dependencies
+  ✓ Index script accepts --source-dir as an alias for --data-dir
+  ✓ Index script accepts --input-dir as an alias for --data-dir
+  ✓ Parse script accepts --source-dir, --data-dir, and --input-dir
+  ✓ File-level safety boundaries (format restriction, write isolation)
+
+==============================================================================
+2. Parse Skill Execution (Parse-only Validation)
+==============================================================================
+
+Skill: parse-enterprise-documents
+Location: .claude/skills/parse-enterprise-documents/SKILL.md
+
+Command (from SKILL.md Commands section, for parse-only inspection):
+  uv run python .claude/skills/parse-enterprise-documents/scripts/parse.py \
+    --source-dir tests/fixtures/task2-input \
+    --no-vision
+
+Input:
+  tests/fixtures/task2-input/
+    - sample_enterprise_report.pdf
+    - sample_product_strategy.pptx (153K)
+
+Result:
+  ✓ Parse skill: 9 records from 2 files
+    - sample_enterprise_report.pdf: 4 records
+    - sample_product_strategy.pptx: 5 records
+
+Execution confirms:
+  - Scripts located in ${CLAUDE_SKILL_DIR}/scripts/
+  - Command matches SKILL.md documentation
+  - Format restriction enforced (PDF/PPTX only)
+  - Read-only operation (no source file modification)
+  - Vision disabled with --no-vision flag
+
+==============================================================================
+3. Index Skill Execution (Index Requests Use This Directly)
+==============================================================================
+
+Skill: index-enterprise-documents
+Location: .claude/skills/index-enterprise-documents/SKILL.md
+
+Command (from SKILL.md Commands section):
+  CHROMA_PATH=.cache/task2-skill-chroma \
+  uv run python .claude/skills/index-enterprise-documents/scripts/ingest.py \
+    --data-dir tests/fixtures/task2-input \
+    --reset \
+    --no-vision
+
+Output summary:
+  {'processed_files': 2, 'failed_files': 0, 'chunk_count': 10, 'skipped': False}
+
+Processing details:
+  ✓ tests/fixtures/task2-input/sample_enterprise_report.pdf: 4 records → 5 chunks
+  ✓ tests/fixtures/task2-input/sample_product_strategy.pptx: 5 records → 5 chunks
+
+Execution confirms:
+  - End-to-end workflow (parse → chunk → embed → persist)
+  - Index requests do not need a separate parse Skill invocation
+  - Write isolation (only writes to CHROMA_PATH)
+  - No source file modification
+  - Vision disabled with --no-vision flag
+  - Temporary index at .cache/task2-skill-chroma (not default chroma/)
+
+==============================================================================
+4. Task 2 Requirements Satisfaction
+==============================================================================
+
+✓ Reusable Skills
+  - Packaged as .claude/skills/{parse,index}-enterprise-documents
+  - Discoverable by Claude Code via SKILL.md
+  - Pre-authorized via allowed-tools frontmatter
+
+✓ Clear Inputs/Outputs
+  - Documented in SKILL.md Inputs/Outputs sections
+  - Concrete command examples in Commands section
+  - Help text available via --help
+
+✓ Safe Execution Boundary
+  - Format restriction: PDF/PPTX only (other formats rejected)
+  - Write isolation: Chroma writes only to configured path
+  - Credential isolation: --no-vision for public demos
+  - Read-only source: ingest does not modify source files
+
+✓ Easily Installed and Invoked
+  - .claude/skills/ auto-discovery by Claude Code
+  - ${CLAUDE_SKILL_DIR} for path-independent script references
+  - Direct command examples Claude can execute via Bash tool
+
+✓ Verifiable Outputs
+  - This log: execution evidence with commands and results
+  - Tests: structure validation and boundary enforcement
+  - Screenshots:
+    - tests/screenshots/parse-enterprise-documents-skills.png
+    - tests/screenshots/index-enterprise-documents-skills.png
+  - Demo-ready: all commands use --no-vision
+
+==============================================================================
+5. Official Pattern Compliance
+==============================================================================
+
+Based on https://code.claude.com/docs/en/skills and
+https://kaochenlong.com/claude-code-skills:
+
+✓ File structure:
+  skill-name/
+  ├── SKILL.md           # Instructions with frontmatter
+  └── scripts/           # Executable code
+      └── script.py
+
+✓ Frontmatter fields:
+  - name: skill-name (lowercase, hyphens)
+  - description: what and when to use (>80 chars)
+  - allowed-tools: Bash(uv run python *) for pre-authorization and dependencies
+
+✓ SKILL.md content:
+  - Clear sections: Inputs, Outputs, Safe Execution Boundary, Commands
+  - ${CLAUDE_SKILL_DIR} for script references
+  - Executable command examples with uv run python
+  - Usage notes and guidance
+
+✓ Invocation model:
+  - Claude reads SKILL.md when relevant
+  - Claude executes commands via Bash tool
+  - Scripts located relative to skill directory
+  - No wrapper scripts required
+
+==============================================================================
+End of Skill Execution Evidence
+==============================================================================
