@@ -11,7 +11,7 @@
   ],
   "source_plan": "plan/plan.md",
   "dynamic_loader_note": "每次工作先讀本檔 current_phase 與 phase_path，再讀該 phase 檔並執行 implementation_check。",
-  "current_phase": "phase-14",
+  "current_phase": "phase-16",
   "phases": [
     {
       "id": "phase-00",
@@ -298,6 +298,93 @@
         "checked": true,
         "checked_at": "2026-05-07",
         "notes": "README Task 2 section clarified the Claude Skills packaging boundary, script-based Skill execution evidence, uv run python dependency environment, committed fixture inputs, and stricter guidance to avoid running parse before index requests. Validation passed: README rg check, runtime_control JSON parse, and uv run python -m unittest -q tests/test_claude_skills.py."
+      }
+    },
+    {
+      "id": "phase-15",
+      "title": "Task 3 Planning And Boundaries",
+      "phase_path": "plan/phases/phase-15.md",
+      "status": "completed",
+      "implementation_check": {
+        "required_paths": [
+          "plan/phases/phase-15.md",
+          "plan/phases/phase-16.md",
+          "plan/phases/phase-17.md",
+          "plan/phases/phase-18.md"
+        ],
+        "validation_commands": [
+          "python3 -m json.tool plan/runtime_control.json",
+          "rg -n 'phase-1[5-8]|Task 3|NotebookLM|PPT|Slide Deck|browser workflow' plan"
+        ],
+        "checked": true,
+        "checked_at": "2026-05-07",
+        "notes": "Task 3 planning phase completed. Scope defines a real NotebookLM browser workflow that prepares project sources, generates a Slide Deck, downloads a PowerPoint PPTX, and records screenshots/run logs. Because NotebookLM requires login and can change UI, the plan treats the external run as manual-assisted browser automation with artifact-based verification. Phases 16-18 were created for implementation, verification evidence, and README documentation."
+      }
+    },
+    {
+      "id": "phase-16",
+      "title": "NotebookLM PPT Browser Agent",
+      "phase_path": "plan/phases/phase-16.md",
+      "status": "pending",
+      "implementation_check": {
+        "required_paths": [
+          "task3_notebooklm_agent/__init__.py",
+          "task3_notebooklm_agent/config.py",
+          "task3_notebooklm_agent/auth.py",
+          "task3_notebooklm_agent/source_bundle.py",
+          "task3_notebooklm_agent/agent.py",
+          "scripts/notebooklm_ppt_agent.py"
+        ],
+        "validation_commands": [
+          "uv run python -m unittest -q tests/test_notebooklm_ppt_agent.py",
+          "uv run python scripts/notebooklm_ppt_agent.py --help",
+          "uv run python scripts/notebooklm_ppt_agent.py --prepare-only --output-dir .cache/task3-notebooklm",
+          "test -f .cache/task3-notebooklm/project-workflow-source.md"
+        ],
+        "checked": false,
+        "checked_at": null,
+        "notes": ""
+      }
+    },
+    {
+      "id": "phase-17",
+      "title": "NotebookLM PPT Verification Evidence",
+      "phase_path": "plan/phases/phase-17.md",
+      "status": "pending",
+      "implementation_check": {
+        "required_paths": [
+          "tests/test_notebooklm_ppt_agent.py",
+          "tests/notebooklm_ppt_agent_execution.log",
+          "tests/screenshots/notebooklm-ppt-completed.png",
+          "tests/artifacts/notebooklm-project-workflow-deck.pptx"
+        ],
+        "validation_commands": [
+          "uv run python -m unittest -q tests/test_notebooklm_ppt_agent.py",
+          "rg -n 'NotebookLM|Slide Deck|pptx|download|completed|screenshot' tests/notebooklm_ppt_agent_execution.log",
+          "test -s tests/screenshots/notebooklm-ppt-completed.png",
+          "uv run python -c \"from pptx import Presentation; Presentation('tests/artifacts/notebooklm-project-workflow-deck.pptx')\""
+        ],
+        "checked": false,
+        "checked_at": null,
+        "notes": ""
+      }
+    },
+    {
+      "id": "phase-18",
+      "title": "Task 3 README Documentation",
+      "phase_path": "plan/phases/phase-18.md",
+      "status": "pending",
+      "implementation_check": {
+        "required_paths": [
+          "README.md"
+        ],
+        "validation_commands": [
+          "rg -n 'Task 3|NotebookLM|PPT|Slide Deck|notebooklm_ppt_agent|screenshots' README.md",
+          "python3 -m json.tool plan/runtime_control.json"
+        ],
+        "checked": false,
+        "checked_at": null,
+        "notes": ""
       }
     }
   ],
