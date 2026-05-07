@@ -4,11 +4,34 @@ Remote MCP server for searching parsed enterprise documents. The project ingests
 
 ## Architecture
 
+The project has one preprocessing core and two delivery surfaces:
+
+```text
+PDF/PPTX files
+  -> skills/parse_documents
+     parse text, tables, slide text, and optional vision summaries
+  -> skills/chunk_and_index
+     chunk records, embed text, persist vectors in Chroma
+  -> mcp_server
+     expose search, search_by_source, and list_documents over MCP Streamable HTTP
+
+Claude Code Skills
+  -> .claude/skills/parse-enterprise-documents
+     parse-only inspection interface
+  -> .claude/skills/index-enterprise-documents
+     end-to-end parse/chunk/embed/index interface
+```
+
+Core modules:
+
 - `skills/parse_documents/`: PDF/PPTX parsing, text cleanup, table markdown conversion, page/image rendering, optional vision summaries.
 - `skills/chunk_and_index/`: chunking, local embedding, Chroma persistence, vector search, cross-encoder rerank.
-- `scripts/ingest.py`: parse documents from `data/` and index them into Chroma.
+- `scripts/ingest.py`: Task 1 ingest CLI; parses documents from `data/` and indexes them into Chroma.
 - `mcp_server/`: FastMCP Streamable HTTP server with search tools and a health route.
+- `.claude/skills/`: Task 2 Claude Code Skills that package the same preprocessing capability for agent-invoked parsing and indexing.
 - `tests/eval_retriever.py`: Ragas context-metric evaluation for retriever quality.
+
+Task 1 uses the core modules to serve a remote MCP knowledge base. Task 2 reuses the same modules through Claude Code Skills; it does not introduce a separate parser or indexer.
 
 ## How to run
 
@@ -117,6 +140,58 @@ Find Tesla product liability risks.
 ```
 
 These examples cover both indexed documents and show source-grounded retrieval across presentation slides, financial reports, and risk-related sections.
+
+## Task 1: Remote MCP Server
+
+Task 1 delivers the running MCP service. The service parses local enterprise documents, chunks and embeds the extracted records, stores them in Chroma, and exposes retrieval tools over Streamable HTTP.
+
+Task 1 implementation entry points:
+
+- `scripts/ingest.py`: local ingest workflow used by Docker/startup flows.
+- `mcp_server/server.py`: FastMCP Streamable HTTP server.
+- `mcp_server/_search.py`: retrieval adapter over the persisted Chroma index.
+
+Use the commands in "How to run", "MCP Usage", and "Docker And Zeabur" to verify Task 1.
+
+## Task 2: Claude Skills Packaging
+
+Task 2 packages the same preprocessing capability behind Claude Code project Skills. These Skills are the supported interface for Claude-assisted preprocessing work:
+
+- `.claude/skills/parse-enterprise-documents/SKILL.md`
+- `.claude/skills/parse-enterprise-documents/scripts/parse.py`
+- `.claude/skills/index-enterprise-documents/SKILL.md`
+- `.claude/skills/index-enterprise-documents/scripts/ingest.py`
+
+The reusable demo inputs are committed under `tests/fixtures/task2-input/` so reviewers can rerun the Skill examples without relying on local `.cache/` files.
+
+Use `parse-enterprise-documents` when the user asks to parse or inspect PDF/PPTX content. Use `index-enterprise-documents` when the user asks to build, refresh, or validate a searchable index. The index Skill is the higher-level workflow: it already handles parsing, chunking, embedding, and Chroma persistence internally, so it should not call the parse Skill first unless the user explicitly asks for a separate parse-only inspection.
+
+Safe boundary:
+
+- For interview/demo evidence, prefer invoking the Skill command from `SKILL.md` directly instead of running exploratory shell commands first.
+- Claude Code may check user-provided paths only when needed to resolve an ambiguous or failing input.
+- Claude Code should execute Skill scripts with `uv run python ${CLAUDE_SKILL_DIR}/scripts/...` so project dependencies are available.
+- For index requests, Claude Code should run only `index-enterprise-documents`; it should not run `parse-enterprise-documents` first unless the user explicitly asks to inspect parsed records.
+- Both Skills accept `--data-dir`, `--source-dir`, and `--input-dir` for directory input; examples prefer `--data-dir` for indexing and `--source-dir` for parse-only inspection.
+- Public demo and credential-free runs should use `--no-vision`.
+- External vision credentials are optional and should only be used when intentionally configured.
+
+Task 2 verification:
+
+```bash
+uv run python -m unittest -q tests/test_claude_skills.py
+uv run python .claude/skills/index-enterprise-documents/scripts/ingest.py --help
+rg -n 'uv run python|CLAUDE_SKILL_DIR|--data-dir|--source-dir|--input-dir|Do not run `parse-enterprise-documents` first' .claude/skills/*/SKILL.md
+```
+
+The index help should show `--data-dir`, `--source-dir`, and `--input-dir`. See `tests/skill_execution.log` for copied Skill invocation evidence and boundary checks.
+
+Task 2 evidence files:
+
+- `tests/fixtures/task2-input/`: committed PDF/PPTX inputs for rerunning the Skill examples.
+- `tests/skill_execution.log`: copied command/output evidence for parse and index Skill runs.
+- `tests/screenshots/parse-enterprise-documents-skills.png`: Claude Code using the parse Skill.
+- `tests/screenshots/index-enterprise-documents-skills.png`: Claude Code using the index Skill.
 
 ## Verify
 

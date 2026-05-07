@@ -286,18 +286,18 @@
       "id": "phase-14",
       "title": "Task 2 README Documentation",
       "phase_path": "plan/phases/phase-14.md",
-      "status": "pending",
+      "status": "completed",
       "implementation_check": {
         "required_paths": [
           "README.md",
-          "tests/skill_output.log"
+          "tests/skill_execution.log"
         ],
         "validation_commands": [
-          "rg -n 'Task 1|Task 2|Claude Skills|skill_output|Safe' README.md"
+          "rg -n 'Task 1|Task 2|Claude Skills|skill_execution|Safe|uv run python|--source-dir|--input-dir' README.md"
         ],
-        "checked": false,
-        "checked_at": null,
-        "notes": ""
+        "checked": true,
+        "checked_at": "2026-05-07",
+        "notes": "README Task 2 section clarified the Claude Skills packaging boundary, script-based Skill execution evidence, uv run python dependency environment, committed fixture inputs, and stricter guidance to avoid running parse before index requests. Validation passed: README rg check, runtime_control JSON parse, and uv run python -m unittest -q tests/test_claude_skills.py."
       }
     }
   ],
