@@ -168,6 +168,8 @@ uv sync --locked --no-install-project --no-dev --no-group eval
 }
 ```
 
+Docker deployments start through `scripts/start_server.py`, which runs a startup ingest with `skip_if_exists=True` before launching the MCP server. This keeps a fresh Zeabur volume usable without manually running a one-off ingest command.
+
 Suggested Zeabur settings:
 
 ```env
@@ -176,6 +178,7 @@ EMBED_CACHE_DIR=/app/.cache/embeddings
 HOST=0.0.0.0
 PORT=8000
 ENABLE_VISION=0
+STARTUP_INGEST=1
 ```
 
 Persistent volume:
@@ -187,13 +190,13 @@ Persistent volume:
 Public URL:
 
 ```text
-Pending Zeabur deployment
+https://enterprise-doc-mcp-yonghuei.zeabur.app/
 ```
 
 After deployment, verify:
 
 ```bash
-curl https://<your-zeabur-domain>/health
+curl https://enterprise-doc-mcp-yonghuei.zeabur.app/health
 ```
 
 ## Assumptions and limits
@@ -211,7 +214,7 @@ curl https://<your-zeabur-domain>/health
 - Verifiable outputs: `tests/test_output.log` records unit tests, Ragas eval, MCP client smoke, Docker health, and Docker MCP client results.
 - AI-only workflow: implementation was completed through an agent workflow with phase records in `plan/runtime_control.json` and `plan/progress.md`.
 - Git evidence: history is organized as phase-level commits plus focused evaluation/deployment commits.
-- Deploy online: Docker and Zeabur config are included; public URL is pending final Zeabur deployment.
+- Deploy online: Docker and Zeabur config are included; public URL is `https://enterprise-doc-mcp-yonghuei.zeabur.app/`.
 - Documentation: this README includes how to run/verify, assumptions, and AI workflow notes.
 - No confidential material: source documents are public/sample materials, and secrets are excluded through `.gitignore`.
 

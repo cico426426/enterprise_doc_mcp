@@ -76,7 +76,14 @@ Output:
 
 10. Deployment status
 Zeabur public URL:
-  Pending Zeabur deployment.
+  https://enterprise-doc-mcp-yonghuei.zeabur.app/
+Command:
+  curl https://enterprise-doc-mcp-yonghuei.zeabur.app/health
+Output:
+  {"status":"ok","has_data":false}
+Notes:
+  Public service is reachable, but the Zeabur Chroma volume was empty on first Docker deployment.
+  Docker startup was updated to run ingest with skip_if_exists before starting the MCP server.
 
 11. Task requirement mapping
 Unstructured data pipeline:
@@ -90,6 +97,6 @@ AI workflow:
 Git evidence:
   Commit history is phase-oriented and suitable for review.
 Deploy online:
-  Docker and Zeabur config are present; public URL pending final Zeabur deployment.
+  Docker and Zeabur config are present; public URL is available. Final data-ready health check is pending redeploy after startup ingest update.
 No confidential material:
   Secrets are excluded through .gitignore; sample/public data only.

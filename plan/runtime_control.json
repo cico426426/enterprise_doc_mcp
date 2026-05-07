@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "last_updated": "2026-05-06",
+  "last_updated": "2026-05-07",
   "commit_policy": "user_approval_required_for_each_phase_commit",
   "workflow_rules": [
     "完成每個 phase 後必須先跑 implementation_check.validation_commands",
@@ -211,8 +211,8 @@
           "rg -n 'how to run|verify|assumption|AI' README.md"
         ],
         "checked": true,
-        "checked_at": "2026-05-06",
-        "notes": "README.md and tests/test_output.log added; README validation command passes and includes run, verify, assumptions, AI workflow, Docker, MCP, and Zeabur instructions. Phase remains in_progress because the public Zeabur URL is still pending."
+        "checked_at": "2026-05-07",
+        "notes": "README.md and tests/test_output.log added; README validation command passes and includes run, verify, assumptions, AI workflow, Docker, MCP, and Zeabur instructions. Public Zeabur URL is available at https://enterprise-doc-mcp-yonghuei.zeabur.app/, but first health check returned has_data=false because the Docker deployment started with an empty Chroma volume. Added scripts/start_server.py and changed Docker CMD so startup ingest runs before server start. py_compile and ingest/MCP unit tests pass. Phase remains in_progress until redeployed health check returns has_data=true."
       }
     }
   ],

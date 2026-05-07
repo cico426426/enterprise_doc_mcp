@@ -27,4 +27,4 @@ RUN --mount=type=cache,target=/root/.cache/uv \
 
 EXPOSE 8000
 
-CMD ["python", "mcp_server/server.py"]
+CMD ["python", "scripts/start_server.py"]
