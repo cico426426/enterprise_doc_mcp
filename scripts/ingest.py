@@ -3,7 +3,14 @@ import logging
 import sys
 from pathlib import Path
 
-PROJECT_ROOT = Path(__file__).resolve().parents[1]
+def _find_project_root(start: Path) -> Path:
+    for candidate in [start, *start.parents]:
+        if (candidate / "skills").is_dir() and (candidate / "plan").is_dir():
+            return candidate
+    raise RuntimeError(f"Could not find project root from {start}")
+
+
+PROJECT_ROOT = _find_project_root(Path(__file__).resolve().parent)
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
@@ -37,6 +44,16 @@ def _build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--vision-provider", default=None, help="Vision provider override")
     parser.add_argument("--skip-if-exists", action="store_true", help="Skip ingest if collection already has data")
     parser.add_argument("--data-dir", default="data", help="Directory containing .pdf/.pptx files")
+    parser.add_argument(
+        "--source-dir",
+        dest="data_dir",
+        help="Alias for --data-dir; accepted for consistency with parse-enterprise-documents",
+    )
+    parser.add_argument(
+        "--input-dir",
+        dest="data_dir",
+        help="Alias for --data-dir; accepted for common directory-input wording",
+    )
     return parser
 
 
@@ -78,14 +95,14 @@ def run_ingest(
             total_chunks += int(indexed.get("chunk_count", 0))
             LOGGER.info(
                 "Ingested %s (%s): records=%d chunks=%d",
-                file_path.name,
+                file_path,
                 doc_type,
                 len(records),
                 indexed.get("chunk_count", 0),
             )
         except Exception as exc:
             failed += 1
-            LOGGER.error("Failed ingest for %s: %s", file_path.name, exc)
+            LOGGER.error("Failed ingest for %s: %s", file_path, exc)
 
     return {
         "processed_files": processed,

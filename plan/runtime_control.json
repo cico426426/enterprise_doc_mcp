@@ -11,7 +11,7 @@
   ],
   "source_plan": "plan/plan.md",
   "dynamic_loader_note": "每次工作先讀本檔 current_phase 與 phase_path，再讀該 phase 檔並執行 implementation_check。",
-  "current_phase": "phase-12",
+  "current_phase": "phase-13",
   "phases": [
     {
       "id": "phase-00",
@@ -240,18 +240,23 @@
       "id": "phase-12",
       "title": "Claude Skills Packaging",
       "phase_path": "plan/phases/phase-12.md",
-      "status": "pending",
+      "status": "completed",
       "implementation_check": {
         "required_paths": [
           ".claude/skills/parse-enterprise-documents/SKILL.md",
-          ".claude/skills/index-enterprise-documents/SKILL.md"
+          ".claude/skills/parse-enterprise-documents/scripts/parse.py",
+          ".claude/skills/index-enterprise-documents/SKILL.md",
+          ".claude/skills/index-enterprise-documents/scripts/ingest.py"
         ],
         "validation_commands": [
-          "rg -n 'name:|description:|Inputs|Outputs|Safe Execution Boundary|uv run python|--no-vision' .claude/skills"
+          "rg -n 'name:|description:|Inputs|Outputs|Safe Execution Boundary|Commands' .claude/skills/*/SKILL.md",
+          "find .claude/skills/*/scripts \\( -name '*.py' -type f -o -name '*.py' -type l \\)",
+          "rg '\\$\\{CLAUDE_SKILL_DIR\\}' .claude/skills/*/SKILL.md",
+          "rg -l 'allowed-tools: Bash\\(uv run python \\*\\)' .claude/skills/*/SKILL.md"
         ],
-        "checked": false,
-        "checked_at": null,
-        "notes": ""
+        "checked": true,
+        "checked_at": "2026-05-07",
+        "notes": "Refactored to follow Claude Code Skills pattern: scripts/ directories with symlinks, ${CLAUDE_SKILL_DIR} variable usage, allowed-tools frontmatter, and direct command examples instead of wrapper scripts. Commands now use uv run python so project dependencies are available. Index Skill explicitly says not to run parse first for indexing and accepts --source-dir as a compatibility alias for --data-dir."
       }
     },
     {

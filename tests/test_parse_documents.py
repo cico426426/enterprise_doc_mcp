@@ -4,7 +4,7 @@ from unittest.mock import MagicMock, patch
 
 from skills.parse_documents._pdf import parse_pdf
 from skills.parse_documents._pptx import parse_pptx
-from skills.parse_documents.parse import parse_document
+from skills.parse_documents.parse import discover_documents, parse_document, parse_documents
 
 
 class ParseDispatchTests(TestCase):
@@ -25,6 +25,25 @@ class ParseDispatchTests(TestCase):
     def test_parse_document_invalid_type(self) -> None:
         with self.assertRaises(ValueError):
             parse_document("data/tsla-20231231-gen.pdf", "docx")  # type: ignore[arg-type]
+
+    def test_discover_documents_filters_supported_files(self) -> None:
+        out = discover_documents("data")
+        self.assertEqual(
+            [p.name for p in out],
+            ["GEP-June-2024-Presentation.pptx", "tsla-20231231-gen.pdf"],
+        )
+
+    @patch("skills.parse_documents.parse.parse_document")
+    def test_parse_documents_dispatches_directory(self, parse_document_mock: MagicMock) -> None:
+        parse_document_mock.side_effect = [
+            [{"source_file": "GEP-June-2024-Presentation.pptx"}],
+            [{"source_file": "tsla-20231231-gen.pdf"}],
+        ]
+
+        out = parse_documents("data", enable_vision=False)
+
+        self.assertEqual(len(out), 2)
+        self.assertEqual(parse_document_mock.call_count, 2)
 
 
 class ParsePdfTests(TestCase):
@@ -74,4 +93,3 @@ class ParsePptxTests(TestCase):
         out = parse_pptx(Path("x.pptx"), enable_vision=False)
         self.assertEqual(out[0]["kind"], "slide")
         self.assertEqual(out[0]["title"], "Revenue")
-
