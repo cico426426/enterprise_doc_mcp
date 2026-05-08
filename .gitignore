@@ -13,6 +13,8 @@ wheels/
 # Local caches and generated indexes
 .cache/
 chroma/
+playwright/.auth/
+session.json
 
 # Local test output
 .pytest_cache/

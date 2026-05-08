@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "last_updated": "2026-05-07",
+  "last_updated": "2026-05-08",
   "commit_policy": "user_approval_required_for_each_phase_commit",
   "workflow_rules": [
     "完成每個 phase 後必須先跑 implementation_check.validation_commands",
@@ -11,7 +11,7 @@
   ],
   "source_plan": "plan/plan.md",
   "dynamic_loader_note": "每次工作先讀本檔 current_phase 與 phase_path，再讀該 phase 檔並執行 implementation_check。",
-  "current_phase": "phase-16",
+  "current_phase": "phase-17",
   "phases": [
     {
       "id": "phase-00",
@@ -325,7 +325,7 @@
       "id": "phase-16",
       "title": "NotebookLM PPT Browser Agent",
       "phase_path": "plan/phases/phase-16.md",
-      "status": "pending",
+      "status": "completed",
       "implementation_check": {
         "required_paths": [
           "task3_notebooklm_agent/__init__.py",
@@ -341,9 +341,9 @@
           "uv run python scripts/notebooklm_ppt_agent.py --prepare-only --output-dir .cache/task3-notebooklm",
           "test -f .cache/task3-notebooklm/project-workflow-source.md"
         ],
-        "checked": false,
-        "checked_at": null,
-        "notes": ""
+        "checked": true,
+        "checked_at": "2026-05-08",
+        "notes": "Implemented dedicated task3_notebooklm_agent package, source bundle generator, NotebookLM browser auth/session helpers, async Playwright agent flow, thin CLI, and unit tests. Validation passed with uv run: tests/test_notebooklm_ppt_agent.py, CLI --help, prepare-only source generation, and project-workflow-source.md existence check. Playwright dependency added and uv.lock updated."
       }
     },
     {
