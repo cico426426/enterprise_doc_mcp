@@ -34,14 +34,14 @@
 - 補充執行紀錄：`tests/artifacts/task3-notebooklm-run/` 保存 sanitized browser agent run directory，包含完整 MCP log、prompt、source、manifest、result JSON、console logs 與 page snapshots；email 與本機 home path 已 redacted。
 
 ## 正確執行入口
-- 完整 MCP workflow：`uv run python scripts/notebooklm_ppt_mcp_agent.py --cdp-url http://127.0.0.1:9222 --output-dir task3-notebooklm --model openai:gpt-5 --recursion-limit 80 --max-wait-minutes 5 --fresh-notebook`
-- Outline-first 安全檢查：`uv run python scripts/notebooklm_ppt_mcp_agent.py --cdp-url http://127.0.0.1:9222 --output-dir task3-notebooklm --model openai:gpt-4.1 --recursion-limit 120 --fresh-notebook --outline-first`
-- 已開始生成時只觀察狀態：`uv run python scripts/notebooklm_ppt_mcp_agent.py --cdp-url http://127.0.0.1:9222 --output-dir .cache/task3-notebooklm --model openai:gpt-4.1 --recursion-limit 30 --max-wait-minutes 1 --observe-existing-generation`
+- 完整 MCP workflow：`uv run --group task3 python scripts/notebooklm_ppt_mcp_agent.py --cdp-url http://127.0.0.1:9222 --output-dir task3-notebooklm --model openai:gpt-5 --recursion-limit 80 --max-wait-minutes 5 --fresh-notebook`
+- Outline-first 安全檢查：`uv run --group task3 python scripts/notebooklm_ppt_mcp_agent.py --cdp-url http://127.0.0.1:9222 --output-dir task3-notebooklm --model openai:gpt-4.1 --recursion-limit 120 --fresh-notebook --outline-first`
+- 已開始生成時只觀察狀態：`uv run --group task3 python scripts/notebooklm_ppt_mcp_agent.py --cdp-url http://127.0.0.1:9222 --output-dir .cache/task3-notebooklm --model openai:gpt-4.1 --recursion-limit 30 --max-wait-minutes 1 --observe-existing-generation`
 - 執行 log：`.cache/task3-notebooklm/notebooklm-ppt-mcp-agent.log`
 - Upload manifest：`.cache/task3-notebooklm/notebooklm-upload-manifest.json`
 
 ## 驗證
-- `uv run python -m unittest -q tests/test_notebooklm_ppt_agent.py`
+- `uv run --group task3 python -m unittest -q tests/test_notebooklm_ppt_agent.py`
 - `rg -n 'NotebookLM|Slide Deck|generation_started|generation|screenshot|snapshot' tests/notebooklm_ppt_agent_execution.log`
 - `test -s tests/screenshots/notebooklm-ppt-generation-started.yml`
 - `test -s tests/artifacts/notebooklm-ppt-agent-result.json`

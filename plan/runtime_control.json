@@ -335,8 +335,8 @@
           "scripts/notebooklm_ppt_mcp_agent.py"
         ],
         "validation_commands": [
-          "uv run python -m unittest -q tests/test_notebooklm_ppt_agent.py",
-          "uv run python scripts/notebooklm_ppt_mcp_agent.py --help",
+          "uv run --group task3 python -m unittest -q tests/test_notebooklm_ppt_agent.py",
+          "uv run --group task3 python scripts/notebooklm_ppt_mcp_agent.py --help",
           "uv run python -m py_compile task3_notebooklm_agent/config.py task3_notebooklm_agent/source_bundle.py task3_notebooklm_agent/mcp_agent.py scripts/notebooklm_ppt_mcp_agent.py"
         ],
         "checked": true,
@@ -358,7 +358,7 @@
           "tests/artifacts/notebooklm-upload-manifest.json"
         ],
         "validation_commands": [
-          "uv run python -m unittest -q tests/test_notebooklm_ppt_agent.py",
+          "uv run --group task3 python -m unittest -q tests/test_notebooklm_ppt_agent.py",
           "rg -n 'NotebookLM|Slide Deck|generation_started|generation|screenshot|snapshot' tests/notebooklm_ppt_agent_execution.log",
           "test -s tests/screenshots/notebooklm-ppt-generation-started.yml",
           "test -s tests/artifacts/notebooklm-ppt-agent-result.json",
@@ -373,18 +373,24 @@
       "id": "phase-18",
       "title": "Task 3 README Documentation",
       "phase_path": "plan/phases/phase-18.md",
-      "status": "pending",
+      "status": "completed",
       "implementation_check": {
         "required_paths": [
-          "README.md"
+          "README.md",
+          "pyproject.toml",
+          "uv.lock",
+          "Dockerfile"
         ],
         "validation_commands": [
-          "rg -n 'Task 3|NotebookLM|PPT|Slide Deck|notebooklm_ppt_agent|screenshots' README.md",
-          "python3 -m json.tool plan/runtime_control.json"
+          "rg -n 'Task 3|NotebookLM|PPT|Slide Deck|notebooklm_ppt_mcp_agent|screenshots' README.md",
+          "uv run --group task3 python -m unittest -q tests/test_notebooklm_ppt_agent.py",
+          "uv lock --check",
+          "python3 -m json.tool plan/runtime_control.json",
+          "git diff --check"
         ],
-        "checked": false,
-        "checked_at": null,
-        "notes": ""
+        "checked": true,
+        "checked_at": "2026-05-09",
+        "notes": "README documents Task 3 NotebookLM PPT Browser Agent delivery: MCP agent entry points, authenticated CDP workflow command, generation-started stop condition, sanitized evidence paths, supplemental PPTX artifact, and assumptions that NotebookLM requires login and cannot be fully rerun in headless CI. Task 3 browser-agent dependencies are isolated in the task3 dependency group, and Docker production sync excludes eval/task3 groups so Task 1 deployment does not install NotebookLM automation libraries. Validation passed with README rg check, Task 3 group unit tests, uv lock check, runtime JSON validation, and git diff check."
       }
     }
   ],

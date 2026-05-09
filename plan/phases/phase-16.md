@@ -28,8 +28,8 @@
 - 不保留 `scripts/notebooklm_ppt_agent.py`，避免使用者誤跑舊入口
 
 ## 驗證
-- `uv run python -m unittest -q tests/test_notebooklm_ppt_agent.py`
-- `uv run python scripts/notebooklm_ppt_mcp_agent.py --help`
+- `uv run --group task3 python -m unittest -q tests/test_notebooklm_ppt_agent.py`
+- `uv run --group task3 python scripts/notebooklm_ppt_mcp_agent.py --help`
 - `uv run python -m py_compile task3_notebooklm_agent/config.py task3_notebooklm_agent/source_bundle.py task3_notebooklm_agent/mcp_agent.py scripts/notebooklm_ppt_mcp_agent.py`
 
 ## 完成條件
