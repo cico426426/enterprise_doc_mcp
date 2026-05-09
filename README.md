@@ -193,6 +193,58 @@ Task 2 evidence files:
 - `tests/screenshots/parse-enterprise-documents-skills.png`: Claude Code using the parse Skill.
 - `tests/screenshots/index-enterprise-documents-skills.png`: Claude Code using the index Skill.
 
+## Task 3: NotebookLM PPT Browser Agent
+
+Task 3 adds a browser agent that drives NotebookLM through the real web UI and asks NotebookLM to generate a Slide Deck about the project implementation workflow. The supported implementation is the LangChain `create_agent` path backed by Microsoft Playwright MCP browser tools; the old selector-only Playwright entry point was removed because it could stall in the operating system file picker.
+
+Task 3 implementation entry points:
+
+- `task3_notebooklm_agent/config.py`: NotebookLM prompt and Task 3 constants.
+- `task3_notebooklm_agent/source_bundle.py`: deterministic source bundle generator for the NotebookLM upload.
+- `task3_notebooklm_agent/mcp_agent.py`: LangChain + Playwright MCP browser agent.
+- `scripts/notebooklm_ppt_mcp_agent.py`: CLI wrapper for the browser workflow.
+
+The agent prepares a concise project source at `project-workflow-source.txt`, uploads it to a fresh NotebookLM notebook, selects Studio > Slide Deck, sets the output language to Traditional Chinese, pastes the custom prompt, clicks Generate exactly once, and stops after capturing browser evidence that generation started. It does not wait for export/download because NotebookLM Slide Deck generation can take several minutes and the browser workflow evidence is the hard gate.
+
+Run the live workflow with an already-authenticated Chrome session exposed through CDP:
+
+```bash
+uv run --group task3 python scripts/notebooklm_ppt_mcp_agent.py \
+  --cdp-url http://127.0.0.1:9222 \
+  --output-dir task3-notebooklm \
+  --model openai:gpt-5 \
+  --recursion-limit 80 \
+  --max-wait-minutes 5 \
+  --fresh-notebook
+```
+
+The command writes raw local run output under `task3-notebooklm/`. That directory is intentionally ignored because browser snapshots can include account labels and local machine paths. A sanitized copy of the successful run is committed under `tests/artifacts/task3-notebooklm-run/`.
+
+Task 3 verification:
+
+```bash
+uv run --group task3 python -m unittest -q tests/test_notebooklm_ppt_agent.py
+rg -n 'NotebookLM|Slide Deck|generation_started|generation|screenshot|snapshot' tests/notebooklm_ppt_agent_execution.log
+test -s tests/screenshots/notebooklm-ppt-generation-started.yml
+test -s tests/artifacts/notebooklm-ppt-agent-result.json
+test -s tests/artifacts/notebooklm-upload-manifest.json
+```
+
+Task 3 evidence files:
+
+- `tests/notebooklm_ppt_agent_execution.log`: sanitized MCP browser agent run log.
+- `tests/screenshots/notebooklm-ppt-generation-started.yml`: Playwright snapshot showing NotebookLM entered Slide Deck generation.
+- `tests/artifacts/notebooklm-ppt-agent-result.json`: structured result with `generation_started` status.
+- `tests/artifacts/notebooklm-upload-manifest.json`: source upload manifest.
+- `tests/artifacts/task3-notebooklm-run/`: sanitized full browser run directory with prompt, source, log, console output, result JSON, manifest, and page snapshots.
+- `tests/artifacts/EnterpriseDocMcp_Engineering_Blueprint.pptx`: manually downloaded supplemental NotebookLM PPTX artifact.
+
+Key assumptions:
+
+- NotebookLM requires an authenticated Google session, so the full external browser workflow is manual-assisted automation, not a headless CI-only test.
+- NotebookLM UI text and Slide Deck beta behavior can change; the committed evidence records the successful browser workflow state used for Task 3.
+- The agent must upload all selected sources before generation and must not retry Generate after a NotebookLM failure message.
+
 ## Verify
 
 Unit tests:
@@ -251,8 +303,10 @@ Container MCP client smoke verified. See `tests/test_output.log` for copied comm
 The image excludes eval-only Ragas dependencies from production installs:
 
 ```bash
-uv sync --locked --no-install-project --no-dev --no-group eval
+uv sync --locked --no-install-project --no-dev --no-group eval --no-group task3
 ```
+
+Task 3 browser-agent dependencies live in the `task3` dependency group, so Task 1 Docker/Zeabur deployments do not install LangChain or NotebookLM automation libraries.
 
 `zbpack.json`:
 
@@ -307,10 +361,10 @@ curl https://enterprise-doc-mcp-yonghuei.zeabur.app/health
 - Unstructured data pipeline: `scripts/ingest.py` parses PDF/PPTX files from `data/`, cleans/chunks records, embeds them, and stores them in Chroma.
 - Remote MCP server: `mcp_server/server.py` exposes Streamable HTTP tools that standard MCP clients can call.
 - Verifiable outputs: `tests/test_output.log` records unit tests, Ragas eval, MCP client smoke, Docker health, and Docker MCP client results.
-- AI-only workflow: implementation was completed through an agent workflow with phase records in `plan/runtime_control.json` and `plan/progress.md`.
+- AI-only workflow: implementation was completed through an agent workflow with phase records in `plan/runtime_control.json` and `plan/progress.md`; Task 3 uses a browser agent to drive NotebookLM through Playwright MCP.
 - Git evidence: history is organized as phase-level commits plus focused evaluation/deployment commits.
 - Deploy online: Docker and Zeabur config are included; public URL is `https://enterprise-doc-mcp-yonghuei.zeabur.app/`.
-- Documentation: this README includes how to run/verify, assumptions, and AI workflow notes.
+- Documentation: this README includes how to run/verify Task 1, Task 2, and Task 3, plus assumptions and AI workflow notes.
 - No confidential material: source documents are public/sample materials, and secrets are excluded through `.gitignore`.
 
 ## AI Workflow

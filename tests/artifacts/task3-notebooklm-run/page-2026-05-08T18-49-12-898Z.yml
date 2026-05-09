@@ -1,0 +1,226 @@
+- generic [ref=e1]:
+  - generic [ref=e5]:
+    - button [ref=e171] [cursor=pointer]:
+      - img [ref=e10]
+    - button [ref=e172] [cursor=pointer]:
+      - img [ref=e17]
+  - generic [ref=e173]:
+    - generic [ref=e177]:
+      - link [ref=e179] [cursor=pointer]:
+        - /url: /
+        - img [ref=e181]
+      - textbox [ref=e186]: Untitled notebook
+      - generic [ref=e187]:
+        - button [ref=e189]:
+          - img [ref=e190]: add
+          - generic [ref=e191]: 建立筆記本
+        - button [ref=e199]:
+          - img [ref=e200]: share
+          - generic [ref=e202]: 共用
+        - button [ref=e209]:
+          - img [ref=e210]: settings
+          - generic [ref=e212]: 設定
+    - generic [ref=e215]:
+      - generic [ref=e216]:
+        - generic [ref=e217]:
+          - navigation [ref=e218]:
+            - heading [level=2] [ref=e219]:
+              - generic [ref=e220]: 來源
+          - button [ref=e222] [cursor=pointer]:
+            - img [ref=e223]: dock_to_right
+        - generic [ref=e228]:
+          - generic [ref=e229]:
+            - button [ref=e231]:
+              - img [ref=e232]: add
+              - generic [ref=e233]: 新增來源
+            - generic [ref=e239]:
+              - generic [ref=e240]:
+                - img [ref=e241]: search
+                - textbox [ref=e246]:
+                  - /placeholder: 在網路上搜尋新來源
+              - generic [ref=e247]:
+                - generic [ref=e248]:
+                  - button [ref=e251]:
+                    - generic [ref=e253]:
+                      - generic [ref=e254]:
+                        - img [ref=e255]: language
+                        - generic [ref=e256]: 網路
+                      - img [ref=e257]: keyboard_arrow_down
+                  - button [ref=e262]:
+                    - generic [ref=e264]:
+                      - generic [ref=e265]:
+                        - img [ref=e266]: search_spark
+                        - generic [ref=e267]: Fast Research
+                      - img [ref=e268]: keyboard_arrow_down
+                - generic [ref=e271]:
+                  - button [disabled]:
+                    - img: arrow_forward
+          - generic [ref=e274]:
+            - img [ref=e275]: docs
+            - generic [ref=e276]: 已儲存的來源會顯示在這裡
+            - generic [ref=e277]: 點選上方的「新增來源」即可新增 PDF、網站、文字、影片或音訊檔案。你也可以直接從 Google 雲端硬碟匯入檔案。
+      - generic [ref=e279]:
+        - generic [ref=e280]:
+          - heading [level=2] [ref=e282]: 對話
+          - button [ref=e284] [cursor=pointer]:
+            - img [ref=e285]: more_vert
+        - generic [ref=e288]:
+          - generic [ref=e291]:
+            - img [ref=e292]: landscape_2
+            - generic [ref=e293] [cursor=pointer]: 📔
+            - button [ref=e294]:
+              - img [ref=e295]: photo_spark
+              - generic [ref=e296]: 自訂
+            - generic [ref=e299]:
+              - generic [ref=e300]: Untitled notebook
+              - generic [ref=e301]:
+                - generic [ref=e302]: 0 個來源
+                - generic [ref=e303]: ·
+                - generic [ref=e304]: 2026年5月9日
+          - generic [ref=e313]:
+            - textbox [ref=e315]:
+              - /placeholder: 開始輸入...
+            - generic [ref=e316]:
+              - generic [ref=e318]: 0 個來源
+              - button [disabled]:
+                - img: arrow_forward
+      - generic [ref=e320]:
+        - generic [ref=e321]:
+          - navigation [ref=e322]:
+            - heading [level=2] [ref=e323]:
+              - generic [ref=e324]: 工作室
+          - button [ref=e325] [cursor=pointer]:
+            - img [ref=e326]: dock_to_left
+        - generic [ref=e330]:
+          - generic [ref=e331]:
+            - generic [ref=e332]: 🎉
+            - generic [ref=e333]:
+              - generic [ref=e334]: 試用新的心智圖自訂功能！
+              - generic [ref=e335]:
+                - button [disabled]:
+                  - generic: 立即體驗
+                - button [ref=e336] [cursor=pointer]:
+                  - img [ref=e337]: close
+          - generic [ref=e340]:
+            - button [ref=e342]:
+              - generic [ref=e343]:
+                - generic [ref=e344]:
+                  - img [ref=e346]: audio_magic_eraser
+                  - generic [ref=e347]: 語音摘要
+                - generic [ref=e348]:
+                  - button [disabled]:
+                    - img: chevron_forward
+            - button [ref=e350]:
+              - generic [ref=e351]:
+                - generic [ref=e352]:
+                  - img [ref=e354]: tablet
+                  - generic [ref=e355]: 簡報
+                - generic [ref=e356]:
+                  - button [disabled]:
+                    - img: chevron_forward
+            - button [ref=e358]:
+              - generic [ref=e360]:
+                - img [ref=e362]: subscriptions
+                - generic [ref=e363]: 影片摘要
+            - button [ref=e365]:
+              - generic [ref=e366]:
+                - generic [ref=e367]:
+                  - img [ref=e369]: flowchart
+                  - generic [ref=e370]: 心智圖
+                - generic [ref=e371]:
+                  - button [disabled]:
+                    - img: chevron_forward
+            - button [ref=e373]:
+              - generic [ref=e375]:
+                - img [ref=e377]: auto_tab_group
+                - generic [ref=e378]: 報告
+            - button [ref=e380]:
+              - generic [ref=e381]:
+                - generic [ref=e382]:
+                  - img [ref=e384]: cards_star
+                  - generic [ref=e385]: 學習卡
+                - generic [ref=e386]:
+                  - button [disabled]:
+                    - img: chevron_forward
+            - button [ref=e388]:
+              - generic [ref=e389]:
+                - generic [ref=e390]:
+                  - img [ref=e392]: quiz
+                  - generic [ref=e393]: 測驗
+                - generic [ref=e394]:
+                  - button [disabled]:
+                    - img: chevron_forward
+            - button [ref=e396]:
+              - generic [ref=e397]:
+                - generic [ref=e398]:
+                  - img [ref=e400]: stacked_bar_chart
+                  - generic [ref=e401]: 資訊圖表
+                - generic [ref=e402]:
+                  - button [disabled]:
+                    - img: chevron_forward
+            - button [ref=e404]:
+              - generic [ref=e405]:
+                - generic [ref=e406]:
+                  - img [ref=e408]: table_view
+                  - generic [ref=e409]: 資料表
+                - generic [ref=e410]:
+                  - button [disabled]:
+                    - img: chevron_forward
+          - generic [ref=e412]:
+            - generic [ref=e414]:
+              - img [ref=e415]: edit_fix_auto
+              - generic [ref=e416]: 工作室輸出內容會儲存在這裡。
+              - generic [ref=e417]: 加入來源後，點選即可新增語音摘要、研讀指南、心智圖等內容！
+            - button [ref=e418]:
+              - img [ref=e419]: sticky_note_2
+              - generic [ref=e420]: 新增記事
+    - contentinfo [ref=e423]: NotebookLM 提供的資訊未必正確，請查證回覆內容。
+  - dialog "用文件 製作語音和影片摘要" [ref=e427]:
+    - generic [ref=e431]:
+      - heading "用文件 製作語音和影片摘要" [level=1] [ref=e433]:
+        - text: 用文件
+        - generic [ref=e434]: 網站
+        - generic [ref=e435]: 製作語音和影片摘要
+      - generic [ref=e436]:
+        - generic [ref=e440]:
+          - generic [ref=e441]:
+            - img [ref=e442]: search
+            - textbox "根據輸入的查詢內容，探索來源" [active] [ref=e447]:
+              - /placeholder: 在網路上搜尋新來源
+          - generic [ref=e448]:
+            - generic [ref=e449]:
+              - button "網路" [ref=e452]:
+                - generic [ref=e454]:
+                  - generic [ref=e455]:
+                    - img [ref=e456]: language
+                    - generic [ref=e457]: 網路
+                  - img [ref=e458]: keyboard_arrow_down
+              - button "Fast Research" [ref=e463]:
+                - generic [ref=e465]:
+                  - generic [ref=e466]:
+                    - img [ref=e467]: search_spark
+                    - generic [ref=e468]: Fast Research
+                  - img [ref=e469]: keyboard_arrow_down
+            - generic [ref=e472]:
+              - button "提交" [disabled]:
+                - img: arrow_forward
+        - generic [ref=e474]:
+          - generic [ref=e475]:
+            - text: 或者拖曳檔案
+            - generic [ref=e476]: pdf、圖片、文件、音訊 等內容
+          - generic [ref=e477]:
+            - button "上傳檔案" [ref=e478]:
+              - img [ref=e479]: upload
+              - generic [ref=e480]: 上傳檔案
+            - button "網站" [ref=e483]:
+              - img [ref=e484]: link
+              - img [ref=e485]: video_youtube
+              - generic [ref=e486]: 網站
+            - button "雲端硬碟" [ref=e489]:
+              - img [ref=e490]: drive
+              - generic [ref=e491]: 雲端硬碟
+            - button "複製的文字" [ref=e494]:
+              - img [ref=e495]: content_paste
+              - generic [ref=e496]: 複製的文字
+      - button "關閉" [ref=e499] [cursor=pointer]:
+        - img [ref=e500]: close

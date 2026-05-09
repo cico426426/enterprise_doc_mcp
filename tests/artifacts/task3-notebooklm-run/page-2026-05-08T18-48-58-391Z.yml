@@ -1,0 +1,47 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e5]:
+    - button "Google 應用程式" [ref=e9] [cursor=pointer]:
+      - img [ref=e10]
+    - button "Google 帳戶：[redacted]" [ref=e15] [cursor=pointer]:
+      - img [ref=e17]
+  - generic [ref=e20]:
+    - generic [ref=e22]:
+      - link "NotebookLM 首頁" [ref=e24] [cursor=pointer]:
+        - /url: /
+        - img "NotebookLM 標誌" [ref=e26]
+      - generic "設定" [ref=e29]:
+        - button "設定" [ref=e31]:
+          - img [ref=e32]: settings
+          - generic [ref=e34]: 設定
+    - generic [ref=e37]:
+      - heading "歡迎使用 NotebookLM" [level=1] [ref=e38]
+      - generic [ref=e39]:
+        - radiogroup [ref=e40]:
+          - radio "全部" [checked] [ref=e41] [cursor=pointer]:
+            - generic [ref=e42]: 全部
+          - radio "精選筆記本" [ref=e43] [cursor=pointer]:
+            - generic [ref=e45]: 精選筆記本
+        - generic [ref=e46]:
+          - button "開啟搜尋" [ref=e48] [cursor=pointer]:
+            - img [ref=e49]: search
+          - radiogroup [ref=e53]:
+            - radio "格狀檢視" [checked] [ref=e54] [cursor=pointer]:
+              - img [ref=e58]: grid_view
+            - radio "清單檢視" [ref=e59] [cursor=pointer]:
+              - img [ref=e62]: view_headline
+          - generic [ref=e63]:
+            - button "最新" [ref=e64]:
+              - generic [ref=e66]:
+                - text: 最新
+                - img [ref=e67]: arrow_drop_down
+            - button "建立新的筆記本" [ref=e73]:
+              - img [ref=e74]: add
+              - generic [ref=e75]: 新建
+      - generic [ref=e78]:
+        - heading "精選筆記本" [level=2] [ref=e81]
+        - generic [ref=e87]:
+          - heading "最近開啟的筆記本" [level=2] [ref=e88]
+          - button "建立新的筆記本" [ref=e89] [cursor=pointer]:
+            - generic [ref=e90]:
+              - img [ref=e92]: add
+              - generic [ref=e93]: 建立新的筆記本

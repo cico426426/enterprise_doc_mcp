@@ -19,11 +19,11 @@ RUN apt-get update \
 
 COPY pyproject.toml uv.lock ./
 RUN --mount=type=cache,target=/root/.cache/uv \
-    uv sync --locked --no-install-project --no-dev --no-group eval
+    uv sync --locked --no-install-project --no-dev --no-group eval --no-group task3
 
 COPY . .
 RUN --mount=type=cache,target=/root/.cache/uv \
-    uv sync --locked --no-install-project --no-dev --no-group eval
+    uv sync --locked --no-install-project --no-dev --no-group eval --no-group task3
 
 EXPOSE 8000
 

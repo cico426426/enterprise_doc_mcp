@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "last_updated": "2026-05-07",
+  "last_updated": "2026-05-09",
   "commit_policy": "user_approval_required_for_each_phase_commit",
   "workflow_rules": [
     "完成每個 phase 後必須先跑 implementation_check.validation_commands",
@@ -11,7 +11,7 @@
   ],
   "source_plan": "plan/plan.md",
   "dynamic_loader_note": "每次工作先讀本檔 current_phase 與 phase_path，再讀該 phase 檔並執行 implementation_check。",
-  "current_phase": "phase-14",
+  "current_phase": "phase-18",
   "phases": [
     {
       "id": "phase-00",
@@ -298,6 +298,99 @@
         "checked": true,
         "checked_at": "2026-05-07",
         "notes": "README Task 2 section clarified the Claude Skills packaging boundary, script-based Skill execution evidence, uv run python dependency environment, committed fixture inputs, and stricter guidance to avoid running parse before index requests. Validation passed: README rg check, runtime_control JSON parse, and uv run python -m unittest -q tests/test_claude_skills.py."
+      }
+    },
+    {
+      "id": "phase-15",
+      "title": "Task 3 Planning And Boundaries",
+      "phase_path": "plan/phases/phase-15.md",
+      "status": "completed",
+      "implementation_check": {
+        "required_paths": [
+          "plan/phases/phase-15.md",
+          "plan/phases/phase-16.md",
+          "plan/phases/phase-17.md",
+          "plan/phases/phase-18.md"
+        ],
+        "validation_commands": [
+          "python3 -m json.tool plan/runtime_control.json",
+          "rg -n 'phase-1[5-8]|Task 3|NotebookLM|PPT|Slide Deck|browser workflow' plan"
+        ],
+        "checked": true,
+        "checked_at": "2026-05-07",
+        "notes": "Task 3 planning phase completed. Scope defines a real NotebookLM browser workflow that prepares project sources, generates a Slide Deck, and records screenshots/run logs. Because NotebookLM requires login and can change UI, the plan treats the external run as manual-assisted browser automation with artifact-based verification. Phases 16-18 were created for implementation, verification evidence, and README documentation."
+      }
+    },
+    {
+      "id": "phase-16",
+      "title": "NotebookLM PPT Browser Agent",
+      "phase_path": "plan/phases/phase-16.md",
+      "status": "completed",
+      "implementation_check": {
+        "required_paths": [
+          "task3_notebooklm_agent/__init__.py",
+          "task3_notebooklm_agent/config.py",
+          "task3_notebooklm_agent/source_bundle.py",
+          "task3_notebooklm_agent/mcp_agent.py",
+          "scripts/notebooklm_ppt_mcp_agent.py"
+        ],
+        "validation_commands": [
+          "uv run --group task3 python -m unittest -q tests/test_notebooklm_ppt_agent.py",
+          "uv run --group task3 python scripts/notebooklm_ppt_mcp_agent.py --help",
+          "uv run python -m py_compile task3_notebooklm_agent/config.py task3_notebooklm_agent/source_bundle.py task3_notebooklm_agent/mcp_agent.py scripts/notebooklm_ppt_mcp_agent.py"
+        ],
+        "checked": true,
+        "checked_at": "2026-05-08",
+        "notes": "Implemented dedicated task3_notebooklm_agent package with only the MCP-required modules: config.py, source_bundle.py, and mcp_agent.py. Removed scripts/notebooklm_ppt_agent.py plus legacy agent.py/auth.py because they belonged to the selector-based Playwright path and could be mistaken for the live workflow. Live automation entry point is scripts/notebooklm_ppt_mcp_agent.py only. Validation passed with uv run: tests/test_notebooklm_ppt_agent.py, MCP CLI --help, and py_compile for the remaining NotebookLM agent modules."
+      }
+    },
+    {
+      "id": "phase-17",
+      "title": "NotebookLM Slide Deck Verification Evidence",
+      "phase_path": "plan/phases/phase-17.md",
+      "status": "completed",
+      "implementation_check": {
+        "required_paths": [
+          "tests/test_notebooklm_ppt_agent.py",
+          "tests/notebooklm_ppt_agent_execution.log",
+          "tests/screenshots/notebooklm-ppt-generation-started.yml",
+          "tests/artifacts/notebooklm-ppt-agent-result.json",
+          "tests/artifacts/notebooklm-upload-manifest.json"
+        ],
+        "validation_commands": [
+          "uv run --group task3 python -m unittest -q tests/test_notebooklm_ppt_agent.py",
+          "rg -n 'NotebookLM|Slide Deck|generation_started|generation|screenshot|snapshot' tests/notebooklm_ppt_agent_execution.log",
+          "test -s tests/screenshots/notebooklm-ppt-generation-started.yml",
+          "test -s tests/artifacts/notebooklm-ppt-agent-result.json",
+          "test -s tests/artifacts/notebooklm-upload-manifest.json"
+        ],
+        "checked": true,
+        "checked_at": "2026-05-09",
+        "notes": "Completed with real NotebookLM browser workflow evidence. The MCP agent created a fresh notebook, uploaded project-workflow-source.txt, set the Slide Deck language to 中文（繁體）, pasted the custom prompt, clicked Generate exactly once, and captured generation_started evidence showing 正在生成簡報... 根據1 個來源 plus 開始生成「簡報」。 Evidence copied to tests/: run log, generation-started snapshot, result JSON, upload manifest, sanitized task3-notebooklm-run directory, and a manually downloaded supplemental PPTX artifact at tests/artifacts/EnterpriseDocMcp_Engineering_Blueprint.pptx. The PPTX is evidence only; the agent does not wait for or perform download. Validation passed with unit tests, log rg check, artifact existence checks, redaction check, PPTX open check, JSON validation, py_compile, and git diff --check."
+      }
+    },
+    {
+      "id": "phase-18",
+      "title": "Task 3 README Documentation",
+      "phase_path": "plan/phases/phase-18.md",
+      "status": "completed",
+      "implementation_check": {
+        "required_paths": [
+          "README.md",
+          "pyproject.toml",
+          "uv.lock",
+          "Dockerfile"
+        ],
+        "validation_commands": [
+          "rg -n 'Task 3|NotebookLM|PPT|Slide Deck|notebooklm_ppt_mcp_agent|screenshots' README.md",
+          "uv run --group task3 python -m unittest -q tests/test_notebooklm_ppt_agent.py",
+          "uv lock --check",
+          "python3 -m json.tool plan/runtime_control.json",
+          "git diff --check"
+        ],
+        "checked": true,
+        "checked_at": "2026-05-09",
+        "notes": "README documents Task 3 NotebookLM PPT Browser Agent delivery: MCP agent entry points, authenticated CDP workflow command, generation-started stop condition, sanitized evidence paths, supplemental PPTX artifact, and assumptions that NotebookLM requires login and cannot be fully rerun in headless CI. Task 3 browser-agent dependencies are isolated in the task3 dependency group, and Docker production sync excludes eval/task3 groups so Task 1 deployment does not install NotebookLM automation libraries. Validation passed with README rg check, Task 3 group unit tests, uv lock check, runtime JSON validation, and git diff check."
       }
     }
   ],
