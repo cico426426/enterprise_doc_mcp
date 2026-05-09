@@ -1,0 +1,433 @@
+- generic [ref=e1]:
+  - generic [ref=e5]:
+    - button [ref=e690] [cursor=pointer]:
+      - img [ref=e10]
+    - button [ref=e691] [cursor=pointer]:
+      - img [ref=e17]
+  - generic [ref=e173]:
+    - generic [ref=e177]:
+      - link [ref=e692] [cursor=pointer]:
+        - /url: /
+        - img [ref=e693]
+      - textbox [ref=e186]: EnterpriseDocMcp Implementation and Phase-Based Engineering Workflow
+      - generic [ref=e187]:
+        - button [ref=e694]:
+          - img [ref=e190]: add
+          - generic [ref=e191]: 建立筆記本
+        - button [ref=e696]:
+          - img [ref=e200]: share
+          - generic [ref=e202]: 共用
+        - button [ref=e698]:
+          - img [ref=e210]: settings
+          - generic [ref=e212]: 設定
+    - generic [ref=e215]:
+      - generic [ref=e216]:
+        - generic [ref=e217]:
+          - navigation [ref=e218]:
+            - heading [level=2] [ref=e699]:
+              - generic [ref=e220]: 來源
+          - button [ref=e700] [cursor=pointer]:
+            - img [ref=e223]: dock_to_right
+        - generic [ref=e228]:
+          - generic [ref=e229]:
+            - button [ref=e701]:
+              - img [ref=e232]: add
+              - generic [ref=e233]: 新增來源
+            - generic [ref=e239]:
+              - generic [ref=e240]:
+                - img [ref=e241]: search
+                - textbox [ref=e702]:
+                  - /placeholder: 在網路上搜尋新來源
+              - generic [ref=e247]:
+                - generic [ref=e248]:
+                  - button [ref=e703]:
+                    - generic [ref=e253]:
+                      - generic [ref=e254]:
+                        - img [ref=e255]: language
+                        - generic [ref=e256]: 網路
+                      - img [ref=e257]: keyboard_arrow_down
+                  - button [ref=e704]:
+                    - generic [ref=e264]:
+                      - generic [ref=e265]:
+                        - img [ref=e266]: search_spark
+                        - generic [ref=e267]: Fast Research
+                      - img [ref=e268]: keyboard_arrow_down
+                - generic [ref=e271]:
+                  - button [disabled]:
+                    - img: arrow_forward
+            - generic [ref=e522]:
+              - generic [ref=e523]: 全選
+              - generic [ref=e527] [cursor=pointer]:
+                - checkbox [checked] [ref=e705]
+                - generic:
+                  - img
+          - generic [ref=e530] [cursor=pointer]:
+            - button [ref=e706]
+            - img [ref=e535]: markdown
+            - generic:
+              - generic:
+                - generic: project-workflow-source.txt
+            - generic [ref=e545]:
+              - checkbox [checked] [ref=e707]
+              - generic:
+                - img
+      - generic [ref=e279]:
+        - generic [ref=e280]:
+          - heading [level=2] [ref=e708]: 對話
+          - generic [ref=e283]:
+            - button [ref=e709] [cursor=pointer]:
+              - img [ref=e550]: tune
+            - button [ref=e710] [cursor=pointer]:
+              - img [ref=e285]: more_vert
+        - generic [ref=e288]:
+          - generic [ref=e289]:
+            - generic [ref=e291]:
+              - img [ref=e292]: landscape_2
+              - generic [ref=e293] [cursor=pointer]: 🏗️
+              - button [ref=e711]:
+                - img [ref=e295]: photo_spark
+                - generic [ref=e296]: 自訂
+              - generic [ref=e299]:
+                - generic [ref=e300]: EnterpriseDocMcp Implementation and Phase-Based Engineering Workflow
+                - generic [ref=e301]:
+                  - generic [ref=e302]: 1 個來源
+                  - generic [ref=e303]: ·
+                  - generic [ref=e712]: 2026年5月9日
+            - generic [ref=e556]:
+              - paragraph [ref=e656]:
+                - text: 這份文件詳述了名為
+                - strong [ref=e657]: EnterpriseDocMcp
+                - text: 的工程專案，其核心目標是將企業非結構化文件轉化為具備 AI 檢索能力的知識工作流。該系統由三大支柱組成：首先是建立
+                - strong [ref=e658]: 遠端 MCP 伺服器
+                - text: 以處理文件的解析與向量索引；其次是將預處理流程包裝成
+                - strong [ref=e659]: Claude Skills
+                - text: ，使 AI 能以標準化方式執行任務。專案還包含一個
+                - strong [ref=e660]: 自動化瀏覽器代理程式
+                - text: ，專門操作 NotebookLM 介面來產出簡報證物。整體開發遵循嚴格的
+                - strong [ref=e661]: 分階段工程工作流
+                - text: ，強調人類與 AI 協作中的循序驗證與透明記錄。透過整合
+                - strong [ref=e662]: Docker 部署
+                - text: 與自動化測試，該專案確保了從文件輸入到最後簡報生成的每一步驟都具備可追溯性與技術穩定性。
+              - generic [ref=e663]:
+                - button [ref=e713]:
+                  - img [ref=e665]: keep
+                  - generic [ref=e666]: 儲存至記事
+                - button [ref=e714] [cursor=pointer]:
+                  - img [ref=e670]: copy_all
+                - button [ref=e715] [cursor=pointer]:
+                  - img [ref=e674]: thumb_up
+                - button [ref=e716] [cursor=pointer]:
+                  - img [ref=e678]: thumb_down
+              - generic [ref=e683]:
+                - button [ref=e717] [cursor=pointer]:
+                  - generic [ref=e685]: EnterpriseDocMcp 如何將企業文件轉化為 AI 知識流？
+                - button [ref=e718] [cursor=pointer]:
+                  - generic [ref=e687]: 深入了解瀏覽器代理程式如何自動化產生幻燈片簡報。
+                - button [ref=e719] [cursor=pointer]:
+                  - generic [ref=e689]: 探討本專案中人類與 AI 協作的工程流程與驗證機制。
+          - generic [ref=e313]:
+            - textbox [ref=e720]:
+              - /placeholder: 開始輸入...
+            - generic [ref=e316]:
+              - generic [ref=e318]: 1 個來源
+              - button [disabled]:
+                - img: arrow_forward
+      - generic [ref=e320]:
+        - generic [ref=e321]:
+          - navigation [ref=e322]:
+            - heading [level=2] [ref=e721]:
+              - generic [ref=e324]: 工作室
+          - button [ref=e722] [cursor=pointer]:
+            - img [ref=e326]: dock_to_left
+        - generic [ref=e330]:
+          - generic [ref=e331]:
+            - generic [ref=e332]: 🎉
+            - generic [ref=e333]:
+              - generic [ref=e334]: 試用新的心智圖自訂功能！
+              - generic [ref=e335]:
+                - button [ref=e723]:
+                  - generic [ref=e607]: 立即體驗
+                - button [ref=e724] [cursor=pointer]:
+                  - img [ref=e337]: close
+          - generic [ref=e340]:
+            - button [ref=e725] [cursor=pointer]:
+              - generic [ref=e343]:
+                - generic [ref=e344]:
+                  - img [ref=e346]: audio_magic_eraser
+                  - generic [ref=e347]: 語音摘要
+                - button [ref=e726]:
+                  - img [ref=e613]: chevron_forward
+            - button [ref=e727] [cursor=pointer]:
+              - generic [ref=e351]:
+                - generic [ref=e352]:
+                  - generic [ref=e353]:
+                    - img [ref=e354]: tablet
+                    - generic [ref=e617]: Beta 版
+                  - generic [ref=e355]: 簡報
+                - button [ref=e728]:
+                  - img [ref=e619]: chevron_forward
+            - button [ref=e729] [cursor=pointer]:
+              - generic [ref=e359]:
+                - generic [ref=e360]:
+                  - img [ref=e362]: subscriptions
+                  - generic [ref=e363]: 影片摘要
+                - img [ref=e624]: chevron_forward
+            - button [ref=e730] [cursor=pointer]:
+              - generic [ref=e366]:
+                - generic [ref=e367]:
+                  - img [ref=e369]: flowchart
+                  - generic [ref=e370]: 心智圖
+                - button [ref=e731]:
+                  - img [ref=e627]: chevron_forward
+            - button [ref=e732] [cursor=pointer]:
+              - generic [ref=e374]:
+                - generic [ref=e375]:
+                  - img [ref=e377]: auto_tab_group
+                  - generic [ref=e378]: 報告
+                - img [ref=e632]: chevron_forward
+            - button [ref=e733] [cursor=pointer]:
+              - generic [ref=e381]:
+                - generic [ref=e382]:
+                  - img [ref=e384]: cards_star
+                  - generic [ref=e385]: 學習卡
+                - button [ref=e734]:
+                  - img [ref=e635]: chevron_forward
+            - button [ref=e735] [cursor=pointer]:
+              - generic [ref=e389]:
+                - generic [ref=e390]:
+                  - img [ref=e392]: quiz
+                  - generic [ref=e393]: 測驗
+                - button [ref=e736]:
+                  - img [ref=e640]: chevron_forward
+            - button [ref=e737] [cursor=pointer]:
+              - generic [ref=e397]:
+                - generic [ref=e398]:
+                  - generic [ref=e399]:
+                    - img [ref=e400]: stacked_bar_chart
+                    - generic [ref=e644]: Beta 版
+                  - generic [ref=e401]: 資訊圖表
+                - button [ref=e738]:
+                  - img [ref=e646]: chevron_forward
+            - button [ref=e739] [cursor=pointer]:
+              - generic [ref=e405]:
+                - generic [ref=e406]:
+                  - img [ref=e408]: table_view
+                  - generic [ref=e409]: 資料表
+                - button [ref=e740]:
+                  - img [ref=e651]: chevron_forward
+          - generic [ref=e412]:
+            - generic [ref=e414]:
+              - img [ref=e415]: edit_fix_auto
+              - generic [ref=e416]: 工作室輸出內容會儲存在這裡。
+              - generic [ref=e417]: 加入來源後，點選即可新增語音摘要、研讀指南、心智圖等內容！
+            - button [ref=e741]:
+              - img [ref=e419]: sticky_note_2
+              - generic [ref=e420]: 新增記事
+    - contentinfo [ref=e423]: NotebookLM 提供的資訊未必正確，請查證回覆內容。
+  - dialog "自訂簡報 關閉對話方塊" [ref=e745]:
+    - generic [ref=e749]:
+      - generic [ref=e750]:
+        - img [ref=e751]: tablet
+        - heading "自訂簡報" [level=2] [ref=e752]
+        - button "關閉對話方塊" [ref=e753] [cursor=pointer]:
+          - img [ref=e754]: close
+      - generic [ref=e757]:
+        - generic [ref=e760]:
+          - generic [ref=e761]: 格式
+          - radiogroup "格式" [ref=e762]:
+            - generic [ref=e764] [cursor=pointer]:
+              - radio "詳細簡報 內容完整、文字資料詳盡的簡報，適合以電子郵件分享或獨立閱讀。" [ref=e767]
+              - generic [ref=e772]:
+                - generic [ref=e773]:
+                  - generic [ref=e775]: 詳細簡報
+                  - img [ref=e776]: checkmark
+                - paragraph [ref=e777]: 內容完整、文字資料詳盡的簡報，適合以電子郵件分享或獨立閱讀。
+            - generic [ref=e779] [cursor=pointer]:
+              - radio "簡報投影片 簡潔美觀的投影片，呈現重點內容，做為上台簡報的輔助資料。" [checked] [ref=e782]
+              - generic [ref=e786]:
+                - generic [ref=e787]:
+                  - generic [ref=e789]: 簡報投影片
+                  - img [ref=e790]: checkmark
+                - paragraph [ref=e791]: 簡潔美觀的投影片，呈現重點內容，做為上台簡報的輔助資料。
+        - generic [ref=e793]:
+          - generic [ref=e794]:
+            - generic [ref=e795]: 選擇語言
+            - combobox "選擇語言" [expanded] [active] [ref=e800] [cursor=pointer]:
+              - generic [ref=e801]:
+                - generic [ref=e803]: English
+                - img [ref=e806]
+              - listbox "選擇語言" [ref=e839]:
+                - option "Afrikaans" [ref=e840]:
+                  - generic [ref=e841]: Afrikaans
+                - option "azərbaycan" [ref=e842]:
+                  - generic [ref=e843]: azərbaycan
+                - option "català" [ref=e844]:
+                  - generic [ref=e845]: català
+                - option "Cebuano" [ref=e846]:
+                  - generic [ref=e847]: Cebuano
+                - option "čeština" [ref=e848]:
+                  - generic [ref=e849]: čeština
+                - option "créole haïtien" [ref=e850]:
+                  - generic [ref=e851]: créole haïtien
+                - option "dansk" [ref=e852]:
+                  - generic [ref=e853]: dansk
+                - option "Deutsch" [ref=e854]:
+                  - generic [ref=e855]: Deutsch
+                - option "eesti" [ref=e856]:
+                  - generic [ref=e857]: eesti
+                - option "English" [selected] [ref=e858]:
+                  - generic [ref=e859]: English
+                - option "español" [ref=e861]:
+                  - generic [ref=e862]: español
+                - option "español (Latinoamérica)" [ref=e863]:
+                  - generic [ref=e864]: español (Latinoamérica)
+                - option "español (México)" [ref=e865]:
+                  - generic [ref=e866]: español (México)
+                - option "euskara" [ref=e867]:
+                  - generic [ref=e868]: euskara
+                - option "Filipino" [ref=e869]:
+                  - generic [ref=e870]: Filipino
+                - option "français" [ref=e871]:
+                  - generic [ref=e872]: français
+                - option "français (Canada)" [ref=e873]:
+                  - generic [ref=e874]: français (Canada)
+                - option "galego" [ref=e875]:
+                  - generic [ref=e876]: galego
+                - option "hrvatski" [ref=e877]:
+                  - generic [ref=e878]: hrvatski
+                - option "Indonesia" [ref=e879]:
+                  - generic [ref=e880]: Indonesia
+                - option "íslenska" [ref=e881]:
+                  - generic [ref=e882]: íslenska
+                - option "italiano" [ref=e883]:
+                  - generic [ref=e884]: italiano
+                - option "Jawa" [ref=e885]:
+                  - generic [ref=e886]: Jawa
+                - option "Kiswahili" [ref=e887]:
+                  - generic [ref=e888]: Kiswahili
+                - option "Latin" [ref=e889]:
+                  - generic [ref=e890]: Latin
+                - option "latviešu" [ref=e891]:
+                  - generic [ref=e892]: latviešu
+                - option "lietuvių" [ref=e893]:
+                  - generic [ref=e894]: lietuvių
+                - option "magyar" [ref=e895]:
+                  - generic [ref=e896]: magyar
+                - option "Melayu" [ref=e897]:
+                  - generic [ref=e898]: Melayu
+                - option "Nederlands" [ref=e899]:
+                  - generic [ref=e900]: Nederlands
+                - option "norsk bokmål" [ref=e901]:
+                  - generic [ref=e902]: norsk bokmål
+                - option "norsk nynorsk" [ref=e903]:
+                  - generic [ref=e904]: norsk nynorsk
+                - option "polski" [ref=e905]:
+                  - generic [ref=e906]: polski
+                - option "português (Brasil)" [ref=e907]:
+                  - generic [ref=e908]: português (Brasil)
+                - option "português (Portugal)" [ref=e909]:
+                  - generic [ref=e910]: português (Portugal)
+                - option "română" [ref=e911]:
+                  - generic [ref=e912]: română
+                - option "shqip" [ref=e913]:
+                  - generic [ref=e914]: shqip
+                - option "slovenčina" [ref=e915]:
+                  - generic [ref=e916]: slovenčina
+                - option "slovenščina" [ref=e917]:
+                  - generic [ref=e918]: slovenščina
+                - option "suomi" [ref=e919]:
+                  - generic [ref=e920]: suomi
+                - option "svenska" [ref=e921]:
+                  - generic [ref=e922]: svenska
+                - option "Tiếng Việt" [ref=e923]:
+                  - generic [ref=e924]: Tiếng Việt
+                - option "Türkçe" [ref=e925]:
+                  - generic [ref=e926]: Türkçe
+                - option "Ελληνικά" [ref=e927]:
+                  - generic [ref=e928]: Ελληνικά
+                - option "беларуская" [ref=e929]:
+                  - generic [ref=e930]: беларуская
+                - option "български" [ref=e931]:
+                  - generic [ref=e932]: български
+                - option "македонски" [ref=e933]:
+                  - generic [ref=e934]: македонски
+                - option "русский" [ref=e935]:
+                  - generic [ref=e936]: русский
+                - option "српски" [ref=e937]:
+                  - generic [ref=e938]: српски
+                - option "українська" [ref=e939]:
+                  - generic [ref=e940]: українська
+                - option "ქართული" [ref=e941]:
+                  - generic [ref=e942]: ქართული
+                - option "հայերեն" [ref=e943]:
+                  - generic [ref=e944]: հայերեն
+                - option "עברית" [ref=e945]:
+                  - generic [ref=e946]: עברית
+                - option "اردو" [ref=e947]:
+                  - generic [ref=e948]: اردو
+                - option "العربية" [ref=e949]:
+                  - generic [ref=e950]: العربية
+                - option "العربية (العامية المصرية)" [ref=e951]:
+                  - generic [ref=e952]: العربية (العامية المصرية)
+                - option "پښتو" [ref=e953]:
+                  - generic [ref=e954]: پښتو
+                - option "سنڌي" [ref=e955]:
+                  - generic [ref=e956]: سنڌي
+                - option "فارسی" [ref=e957]:
+                  - generic [ref=e958]: فارسی
+                - option "አማርኛ" [ref=e959]:
+                  - generic [ref=e960]: አማርኛ
+                - option "कोंकणी" [ref=e961]:
+                  - generic [ref=e962]: कोंकणी
+                - option "नेपाली" [ref=e963]:
+                  - generic [ref=e964]: नेपाली
+                - option "मराठी" [ref=e965]:
+                  - generic [ref=e966]: मराठी
+                - option "मैथिली" [ref=e967]:
+                  - generic [ref=e968]: मैथिली
+                - option "हिन्दी" [ref=e969]:
+                  - generic [ref=e970]: हिन्दी
+                - option "বাংলা" [ref=e971]:
+                  - generic [ref=e972]: বাংলা
+                - option "ਪੰਜਾਬੀ" [ref=e973]:
+                  - generic [ref=e974]: ਪੰਜਾਬੀ
+                - option "ગુજરાતી" [ref=e975]:
+                  - generic [ref=e976]: ગુજરાતી
+                - option "ଓଡ଼ିଆ" [ref=e977]:
+                  - generic [ref=e978]: ଓଡ଼ିଆ
+                - option "தமிழ்" [ref=e979]:
+                  - generic [ref=e980]: தமிழ்
+                - option "తెలుగు" [ref=e981]:
+                  - generic [ref=e982]: తెలుగు
+                - option "ಕನ್ನಡ" [ref=e983]:
+                  - generic [ref=e984]: ಕನ್ನಡ
+                - option "മലയാളം" [ref=e985]:
+                  - generic [ref=e986]: മലയാളം
+                - option "සිංහල" [ref=e987]:
+                  - generic [ref=e988]: සිංහල
+                - option "ไทย" [ref=e989]:
+                  - generic [ref=e990]: ไทย
+                - option "မြန်မာ" [ref=e991]:
+                  - generic [ref=e992]: မြန်မာ
+                - option "한국어" [ref=e993]:
+                  - generic [ref=e994]: 한국어
+                - option "中文（简体）" [ref=e995]:
+                  - generic [ref=e996]: 中文（简体）
+                - option "中文（繁體）" [ref=e997]:
+                  - generic [ref=e998]: 中文（繁體）
+                - option "日本語" [ref=e999]:
+                  - generic [ref=e1000]: 日本語
+          - generic [ref=e808]:
+            - generic [ref=e809]: 長度
+            - radiogroup "長度" [ref=e810]:
+              - radio "短" [ref=e811] [cursor=pointer]:
+                - generic [ref=e814]: 短
+              - radio "預設" [checked] [ref=e815] [cursor=pointer]:
+                - generic [ref=e819]: 預設
+        - generic [ref=e822]:
+          - generic [ref=e823]: 說明要建立的簡報
+          - textbox "說明要建立的簡報" [ref=e829]:
+            - /placeholder: 可提供基本大綱，或指定目標對象、樣式和重點，例如：「用大膽活潑的風格，製作適合初學者的簡報，注重逐步說明。」
+            - text: 請使用繁體中文建立一份精簡、專業的 PowerPoint 簡報，說明 EnterpriseDocMcp 專案是如何被實作完成的。 請聚焦在： - 專案目標，以及 Task 1、Task 2、Task 3 之間的關係 - Task 1 Remote MCP Server 架構 - Task 2 Claude Skills 封裝 - Codex phase-based implementation workflow - 人機協作與 feedback loop - 驗證證據：tests、logs、screenshots、deployment 請使用工程專案簡報風格，標題與內文都使用繁體中文。
+      - button "生成" [ref=e831]:
+        - generic [ref=e832]: 生成

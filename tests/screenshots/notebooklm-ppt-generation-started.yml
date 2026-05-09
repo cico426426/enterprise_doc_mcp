@@ -1,0 +1,236 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e5]:
+    - button "Google 應用程式" [ref=e1001] [cursor=pointer]:
+      - img [ref=e10]
+    - button "Google 帳戶：[redacted]" [ref=e1002] [cursor=pointer]:
+      - img [ref=e17]
+  - generic [ref=e173]:
+    - generic [ref=e177]:
+      - link "NotebookLM 首頁" [ref=e1003] [cursor=pointer]:
+        - /url: /
+        - img "NotebookLM 標誌" [ref=e1004]
+      - textbox [ref=e186]: EnterpriseDocMcp Implementation and Phase-Based Engineering Workflow
+      - generic [ref=e187]:
+        - button "建立筆記本" [ref=e1005]:
+          - img [ref=e190]: add
+          - generic [ref=e191]: 建立筆記本
+        - generic "共用筆記本" [ref=e1006]:
+          - button "共用筆記本" [ref=e1007]:
+            - img [ref=e200]: share
+            - generic [ref=e202]: 共用
+        - generic "設定" [ref=e1008]:
+          - button "設定" [ref=e1009]:
+            - img [ref=e210]: settings
+            - generic [ref=e212]: 設定
+    - generic [ref=e215]:
+      - generic [ref=e216]:
+        - generic [ref=e217]:
+          - navigation [ref=e218]:
+            - heading "來源" [level=2] [ref=e1010]:
+              - generic [ref=e220]: 來源
+          - button "收合來源面板" [ref=e1011] [cursor=pointer]:
+            - img [ref=e223]: dock_to_right
+        - generic [ref=e228]:
+          - generic [ref=e229]:
+            - button "新增來源" [ref=e1012]:
+              - img [ref=e232]: add
+              - generic [ref=e233]: 新增來源
+            - generic [ref=e239]:
+              - generic [ref=e240]:
+                - img [ref=e241]: search
+                - textbox "根據輸入的查詢內容，探索來源" [ref=e1013]:
+                  - /placeholder: 在網路上搜尋新來源
+              - generic [ref=e247]:
+                - generic [ref=e248]:
+                  - button "網路" [ref=e1014]:
+                    - generic [ref=e253]:
+                      - generic [ref=e254]:
+                        - img [ref=e255]: language
+                        - generic [ref=e256]: 網路
+                      - img [ref=e257]: keyboard_arrow_down
+                  - button "Fast Research" [ref=e1015]:
+                    - generic [ref=e264]:
+                      - generic [ref=e265]:
+                        - img [ref=e266]: search_spark
+                        - generic [ref=e267]: Fast Research
+                      - img [ref=e268]: keyboard_arrow_down
+                - generic [ref=e271]:
+                  - button "提交" [disabled]:
+                    - img: arrow_forward
+            - generic [ref=e522]:
+              - generic [ref=e523]: 全選
+              - generic [ref=e527] [cursor=pointer]:
+                - checkbox "選取所有來源" [checked] [ref=e1016]
+                - generic:
+                  - img
+          - generic [ref=e530] [cursor=pointer]:
+            - button "project-workflow-source.txt" [ref=e1017]
+            - img [ref=e535]: markdown
+            - generic:
+              - generic:
+                - generic: project-workflow-source.txt
+            - generic:
+              - button "更多"
+            - generic [ref=e545]:
+              - checkbox "project-workflow-source.txt" [checked] [ref=e1018]
+              - generic:
+                - img
+      - generic [ref=e279]:
+        - generic [ref=e280]:
+          - heading "對話" [level=2] [ref=e1019]
+          - generic [ref=e283]:
+            - button "設定筆記本" [ref=e1020] [cursor=pointer]:
+              - img [ref=e550]: tune
+            - button "對話選項" [ref=e1021] [cursor=pointer]:
+              - img [ref=e285]: more_vert
+        - generic [ref=e288]:
+          - generic [ref=e289]:
+            - generic [ref=e291]:
+              - img [ref=e292]: landscape_2
+              - generic [ref=e293] [cursor=pointer]: 🏗️
+              - button "自訂筆記本" [ref=e1022]:
+                - img [ref=e295]: photo_spark
+                - generic [ref=e296]: 自訂
+              - generic [ref=e299]:
+                - generic [ref=e300]: EnterpriseDocMcp Implementation and Phase-Based Engineering Workflow
+                - generic [ref=e301]:
+                  - generic [ref=e302]: 1 個來源
+                  - generic [ref=e303]: ·
+                  - generic "Sat May 09 2026 02:49:05 GMT+0800 (Taiwan Standard Time)" [ref=e1023]: 2026年5月9日
+            - generic [ref=e556]:
+              - paragraph [ref=e656]:
+                - text: 這份文件詳述了名為
+                - strong [ref=e657]: EnterpriseDocMcp
+                - text: 的工程專案，其核心目標是將企業非結構化文件轉化為具備 AI 檢索能力的知識工作流。該系統由三大支柱組成：首先是建立
+                - strong [ref=e658]: 遠端 MCP 伺服器
+                - text: 以處理文件的解析與向量索引；其次是將預處理流程包裝成
+                - strong [ref=e659]: Claude Skills
+                - text: ，使 AI 能以標準化方式執行任務。專案還包含一個
+                - strong [ref=e660]: 自動化瀏覽器代理程式
+                - text: ，專門操作 NotebookLM 介面來產出簡報證物。整體開發遵循嚴格的
+                - strong [ref=e661]: 分階段工程工作流
+                - text: ，強調人類與 AI 協作中的循序驗證與透明記錄。透過整合
+                - strong [ref=e662]: Docker 部署
+                - text: 與自動化測試，該專案確保了從文件輸入到最後簡報生成的每一步驟都具備可追溯性與技術穩定性。
+              - generic [ref=e663]:
+                - button "儲存至記事" [ref=e1024]:
+                  - img [ref=e665]: keep
+                  - generic [ref=e666]: 儲存至記事
+                - button "複製摘要" [ref=e1025] [cursor=pointer]:
+                  - img [ref=e670]: copy_all
+                - button "摘要品質良好" [ref=e1026] [cursor=pointer]:
+                  - img [ref=e674]: thumb_up
+                - button "摘要有待加強" [ref=e1027] [cursor=pointer]:
+                  - img [ref=e678]: thumb_down
+              - generic [ref=e683]:
+                - button "EnterpriseDocMcp 如何將企業文件轉化為 AI 知識流？" [ref=e1028] [cursor=pointer]:
+                  - generic [ref=e685]: EnterpriseDocMcp 如何將企業文件轉化為 AI 知識流？
+                - button "深入了解瀏覽器代理程式如何自動化產生幻燈片簡報。" [ref=e1029] [cursor=pointer]:
+                  - generic [ref=e687]: 深入了解瀏覽器代理程式如何自動化產生幻燈片簡報。
+                - button "探討本專案中人類與 AI 協作的工程流程與驗證機制。" [ref=e1030] [cursor=pointer]:
+                  - generic [ref=e689]: 探討本專案中人類與 AI 協作的工程流程與驗證機制。
+          - generic [ref=e313]:
+            - textbox "查詢方塊" [ref=e1031]:
+              - /placeholder: 開始輸入...
+            - generic [ref=e316]:
+              - generic [ref=e318]: 1 個來源
+              - button "提交" [disabled]:
+                - img: arrow_forward
+      - generic [ref=e320]:
+        - generic [ref=e321]:
+          - navigation [ref=e322]:
+            - heading "工作室" [level=2] [ref=e1032]:
+              - generic [ref=e324]: 工作室
+          - button "收合「工作室」面板" [ref=e1033] [cursor=pointer]:
+            - img [ref=e326]: dock_to_left
+        - generic [ref=e330]:
+          - generic [ref=e331]:
+            - generic [ref=e332]: 🎉
+            - generic [ref=e333]:
+              - generic [ref=e334]: 試用新的心智圖自訂功能！
+              - generic [ref=e335]:
+                - button "立即體驗" [ref=e1034]:
+                  - generic [ref=e607]: 立即體驗
+                - button "關閉橫幅" [ref=e1035] [cursor=pointer]:
+                  - img [ref=e337]: close
+          - generic [ref=e340]:
+            - button "語音摘要" [ref=e1036] [cursor=pointer]:
+              - generic [ref=e343]:
+                - generic [ref=e344]:
+                  - img [ref=e346]: audio_magic_eraser
+                  - generic [ref=e347]: 語音摘要
+                - button "自訂語音摘要" [ref=e1037]:
+                  - img [ref=e613]: chevron_forward
+            - button "簡報" [ref=e1038] [cursor=pointer]:
+              - generic [ref=e351]:
+                - generic [ref=e352]:
+                  - generic [ref=e353]:
+                    - img [ref=e354]: tablet
+                    - generic [ref=e1039]: Beta 版
+                  - generic [ref=e355]: 簡報
+                - button "自訂簡報" [ref=e1040]:
+                  - img [ref=e619]: chevron_forward
+            - button "影片摘要" [ref=e1041] [cursor=pointer]:
+              - generic [ref=e359]:
+                - generic [ref=e360]:
+                  - img [ref=e362]: subscriptions
+                  - generic [ref=e363]: 影片摘要
+                - img [ref=e624]: chevron_forward
+            - button "心智圖" [ref=e1042] [cursor=pointer]:
+              - generic [ref=e366]:
+                - generic [ref=e367]:
+                  - img [ref=e369]: flowchart
+                  - generic [ref=e370]: 心智圖
+                - button "自訂心智圖" [ref=e1043]:
+                  - img [ref=e627]: chevron_forward
+            - button "報告" [ref=e1044] [cursor=pointer]:
+              - generic [ref=e374]:
+                - generic [ref=e375]:
+                  - img [ref=e377]: auto_tab_group
+                  - generic [ref=e378]: 報告
+                - img [ref=e632]: chevron_forward
+            - button "學習卡" [ref=e1045] [cursor=pointer]:
+              - generic [ref=e381]:
+                - generic [ref=e382]:
+                  - img [ref=e384]: cards_star
+                  - generic [ref=e385]: 學習卡
+                - button "自訂學習卡" [ref=e1046]:
+                  - img [ref=e635]: chevron_forward
+            - button "測驗" [ref=e1047] [cursor=pointer]:
+              - generic [ref=e389]:
+                - generic [ref=e390]:
+                  - img [ref=e392]: quiz
+                  - generic [ref=e393]: 測驗
+                - button "自訂測驗" [ref=e1048]:
+                  - img [ref=e640]: chevron_forward
+            - button "資訊圖表" [ref=e1049] [cursor=pointer]:
+              - generic [ref=e397]:
+                - generic [ref=e398]:
+                  - generic [ref=e399]:
+                    - img [ref=e400]: stacked_bar_chart
+                    - generic [ref=e644]: Beta 版
+                  - generic [ref=e401]: 資訊圖表
+                - button "自訂資訊圖表" [ref=e1050]:
+                  - img [ref=e646]: chevron_forward
+            - button "資料表" [ref=e1051] [cursor=pointer]:
+              - generic [ref=e405]:
+                - generic [ref=e406]:
+                  - img [ref=e408]: table_view
+                  - generic [ref=e409]: 資料表
+                - button "自訂資料表" [ref=e1052]:
+                  - img [ref=e651]: chevron_forward
+          - generic [ref=e412]:
+            - generic [ref=e1055] [cursor=pointer]:
+              - button "正在生成簡報... 根據1 個來源" [disabled]
+              - generic:
+                - img: sync
+                - generic:
+                  - generic:
+                    - generic: 正在生成簡報...
+                  - generic:
+                    - generic: 根據1 個來源
+            - button "新增記事" [ref=e1056]:
+              - img [ref=e419]: sticky_note_2
+              - generic [ref=e420]: 新增記事
+    - contentinfo [ref=e423]: NotebookLM 提供的資訊未必正確，請查證回覆內容。
+  - generic [ref=e170]: 開始生成「簡報」。

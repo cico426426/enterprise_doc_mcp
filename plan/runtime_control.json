@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "last_updated": "2026-05-08",
+  "last_updated": "2026-05-09",
   "commit_policy": "user_approval_required_for_each_phase_commit",
   "workflow_rules": [
     "完成每個 phase 後必須先跑 implementation_check.validation_commands",
@@ -11,7 +11,7 @@
   ],
   "source_plan": "plan/plan.md",
   "dynamic_loader_note": "每次工作先讀本檔 current_phase 與 phase_path，再讀該 phase 檔並執行 implementation_check。",
-  "current_phase": "phase-17",
+  "current_phase": "phase-18",
   "phases": [
     {
       "id": "phase-00",
@@ -318,7 +318,7 @@
         ],
         "checked": true,
         "checked_at": "2026-05-07",
-        "notes": "Task 3 planning phase completed. Scope defines a real NotebookLM browser workflow that prepares project sources, generates a Slide Deck, downloads a PowerPoint PPTX, and records screenshots/run logs. Because NotebookLM requires login and can change UI, the plan treats the external run as manual-assisted browser automation with artifact-based verification. Phases 16-18 were created for implementation, verification evidence, and README documentation."
+        "notes": "Task 3 planning phase completed. Scope defines a real NotebookLM browser workflow that prepares project sources, generates a Slide Deck, and records screenshots/run logs. Because NotebookLM requires login and can change UI, the plan treats the external run as manual-assisted browser automation with artifact-based verification. Phases 16-18 were created for implementation, verification evidence, and README documentation."
       }
     },
     {
@@ -330,43 +330,43 @@
         "required_paths": [
           "task3_notebooklm_agent/__init__.py",
           "task3_notebooklm_agent/config.py",
-          "task3_notebooklm_agent/auth.py",
           "task3_notebooklm_agent/source_bundle.py",
-          "task3_notebooklm_agent/agent.py",
-          "scripts/notebooklm_ppt_agent.py"
+          "task3_notebooklm_agent/mcp_agent.py",
+          "scripts/notebooklm_ppt_mcp_agent.py"
         ],
         "validation_commands": [
           "uv run python -m unittest -q tests/test_notebooklm_ppt_agent.py",
-          "uv run python scripts/notebooklm_ppt_agent.py --help",
-          "uv run python scripts/notebooklm_ppt_agent.py --prepare-only --output-dir .cache/task3-notebooklm",
-          "test -f .cache/task3-notebooklm/project-workflow-source.md"
+          "uv run python scripts/notebooklm_ppt_mcp_agent.py --help",
+          "uv run python -m py_compile task3_notebooklm_agent/config.py task3_notebooklm_agent/source_bundle.py task3_notebooklm_agent/mcp_agent.py scripts/notebooklm_ppt_mcp_agent.py"
         ],
         "checked": true,
         "checked_at": "2026-05-08",
-        "notes": "Implemented dedicated task3_notebooklm_agent package, source bundle generator, NotebookLM browser auth/session helpers, async Playwright agent flow, thin CLI, and unit tests. Validation passed with uv run: tests/test_notebooklm_ppt_agent.py, CLI --help, prepare-only source generation, and project-workflow-source.md existence check. Playwright dependency added and uv.lock updated."
+        "notes": "Implemented dedicated task3_notebooklm_agent package with only the MCP-required modules: config.py, source_bundle.py, and mcp_agent.py. Removed scripts/notebooklm_ppt_agent.py plus legacy agent.py/auth.py because they belonged to the selector-based Playwright path and could be mistaken for the live workflow. Live automation entry point is scripts/notebooklm_ppt_mcp_agent.py only. Validation passed with uv run: tests/test_notebooklm_ppt_agent.py, MCP CLI --help, and py_compile for the remaining NotebookLM agent modules."
       }
     },
     {
       "id": "phase-17",
-      "title": "NotebookLM PPT Verification Evidence",
+      "title": "NotebookLM Slide Deck Verification Evidence",
       "phase_path": "plan/phases/phase-17.md",
-      "status": "pending",
+      "status": "completed",
       "implementation_check": {
         "required_paths": [
           "tests/test_notebooklm_ppt_agent.py",
           "tests/notebooklm_ppt_agent_execution.log",
-          "tests/screenshots/notebooklm-ppt-completed.png",
-          "tests/artifacts/notebooklm-project-workflow-deck.pptx"
+          "tests/screenshots/notebooklm-ppt-generation-started.yml",
+          "tests/artifacts/notebooklm-ppt-agent-result.json",
+          "tests/artifacts/notebooklm-upload-manifest.json"
         ],
         "validation_commands": [
           "uv run python -m unittest -q tests/test_notebooklm_ppt_agent.py",
-          "rg -n 'NotebookLM|Slide Deck|pptx|download|completed|screenshot' tests/notebooklm_ppt_agent_execution.log",
-          "test -s tests/screenshots/notebooklm-ppt-completed.png",
-          "uv run python -c \"from pptx import Presentation; Presentation('tests/artifacts/notebooklm-project-workflow-deck.pptx')\""
+          "rg -n 'NotebookLM|Slide Deck|generation_started|generation|screenshot|snapshot' tests/notebooklm_ppt_agent_execution.log",
+          "test -s tests/screenshots/notebooklm-ppt-generation-started.yml",
+          "test -s tests/artifacts/notebooklm-ppt-agent-result.json",
+          "test -s tests/artifacts/notebooklm-upload-manifest.json"
         ],
-        "checked": false,
-        "checked_at": null,
-        "notes": ""
+        "checked": true,
+        "checked_at": "2026-05-09",
+        "notes": "Completed with real NotebookLM browser workflow evidence. The MCP agent created a fresh notebook, uploaded project-workflow-source.txt, set the Slide Deck language to 中文（繁體）, pasted the custom prompt, clicked Generate exactly once, and captured generation_started evidence showing 正在生成簡報... 根據1 個來源 plus 開始生成「簡報」。 Evidence copied to tests/: run log, generation-started snapshot, result JSON, upload manifest, sanitized task3-notebooklm-run directory, and a manually downloaded supplemental PPTX artifact at tests/artifacts/EnterpriseDocMcp_Engineering_Blueprint.pptx. The PPTX is evidence only; the agent does not wait for or perform download. Validation passed with unit tests, log rg check, artifact existence checks, redaction check, PPTX open check, JSON validation, py_compile, and git diff --check."
       }
     },
     {

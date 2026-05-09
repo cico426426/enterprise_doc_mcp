@@ -37,8 +37,8 @@ NotebookLM 需要登入且 UI 可能變動，因此 Task 3 會採用 manual-assi
 - Phase 18：更新 README，說明 Task 3 如何執行、驗證與 AI workflow。
 
 ## Task 3 專屬結構
-- `task3_notebooklm_agent/`: Task 3 package，包含 auth、config、source bundle、browser automation logic
-- `scripts/notebooklm_ppt_agent.py`: thin CLI entry point
+- `task3_notebooklm_agent/`: Task 3 package，包含 config、source bundle、MCP browser agent logic
+- `scripts/notebooklm_ppt_mcp_agent.py`: LangChain `create_agent` + Playwright MCP live browser agent CLI
 - `.cache/task3-notebooklm/`: local generated source bundle、session/auth state、download outputs
 - `tests/test_notebooklm_ppt_agent.py`: unit tests for source preparation、CLI validation、artifact validation
 - `tests/notebooklm_ppt_agent_execution.log`: real NotebookLM run log

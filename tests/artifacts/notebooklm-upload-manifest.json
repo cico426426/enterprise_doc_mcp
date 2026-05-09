@@ -1,0 +1,6 @@
+{
+  "primary_text_source": "[repo-root]/task3-notebooklm/project-workflow-source.txt",
+  "prompt_path": "[repo-root]/task3-notebooklm/notebooklm-slide-deck-prompt.txt",
+  "optional_image_sources": [],
+  "upload_guidance": "Use the concise text brief as the required source. Only upload NotebookLM-specific screenshot evidence when it directly helps the final deck. Do not upload unrelated Task 2 skill screenshots."
+}

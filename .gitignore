@@ -18,3 +18,8 @@ session.json
 
 # Local test output
 .pytest_cache/
+
+# Local NotebookLM browser run outputs may include account labels or local paths.
+task3-notebooklm/
+snapshot-*.md
+notebooklm-observation.png

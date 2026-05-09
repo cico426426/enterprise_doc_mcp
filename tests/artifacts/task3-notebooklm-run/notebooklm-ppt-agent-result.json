@@ -1,0 +1,10 @@
+{
+  "status": "generation_started",
+  "source_path": "[repo-root]/task3-notebooklm/project-workflow-source.txt",
+  "prompt_path": "[repo-root]/task3-notebooklm/notebooklm-slide-deck-prompt.txt",
+  "result_path": "task3-notebooklm/notebooklm-ppt-agent-result.json",
+  "log_path": "task3-notebooklm/notebooklm-ppt-mcp-agent.log",
+  "manifest_path": "task3-notebooklm/notebooklm-upload-manifest.json",
+  "outline_path": null,
+  "message": "MCP browser workflow reached NotebookLM Slide Deck generation state"
+}

@@ -3,13 +3,9 @@ from __future__ import annotations
 from pathlib import Path
 
 
-NOTEBOOKLM_URL = "https://notebooklm.google.com"
 DEFAULT_OUTPUT_DIR = Path(".cache/task3-notebooklm")
-SESSION_FILE_NAME = "session.json"
-SOURCE_BUNDLE_FILE_NAME = "project-workflow-source.md"
 RESULT_FILE_NAME = "notebooklm-ppt-agent-result.json"
-DEFAULT_TIMEOUT_MS = 60_000
-DEFAULT_SCREENSHOT_NAME = "notebooklm-ppt-current.png"
+DEFAULT_CDP_URL = "http://127.0.0.1:9222"
 
 PROJECT_SOURCE_PATHS = [
     Path("plan/task.txt"),
@@ -20,25 +16,24 @@ PROJECT_SOURCE_PATHS = [
     Path("tests/skill_execution.log"),
 ]
 
-SCREENSHOT_GLOB = "tests/screenshots/*.png"
+NOTEBOOKLM_SCREENSHOT_GLOB = "tests/screenshots/notebooklm-ppt-*.png"
 
-SLIDE_DECK_PROMPT = """Create a concise PowerPoint slide deck about how the EnterpriseDocMcp project was built.
+SLIDE_DECK_PROMPT = """請使用繁體中文建立一份精簡、專業的 PowerPoint 簡報，說明 EnterpriseDocMcp 專案是如何被實作完成的。
 
-Focus on:
-- project goal and how Task 1, Task 2, and Task 3 relate
-- Task 1 remote MCP server architecture
-- Task 2 Claude Skills packaging
+請聚焦在：
+- 專案目標，以及 Task 1、Task 2、Task 3 之間的關係
+- Task 1 Remote MCP Server 架構
+- Task 2 Claude Skills 封裝
 - Codex phase-based implementation workflow
-- human-AI collaboration and feedback loop
-- validation evidence: tests, logs, screenshots, deployment
+- 人機協作與 feedback loop
+- 驗證證據：tests、logs、screenshots、deployment
 
-Use a professional engineering presentation style.
-Do not mention interviewers, hiring evaluation, or assessment criteria.
+請使用工程專案簡報風格，標題與內文都使用繁體中文。
 """
 
-UPLOAD_TEXT_CANDIDATES = ("Upload", "Upload source", "Add source")
-NEW_NOTEBOOK_TEXT_CANDIDATES = ("New notebook", "Create new notebook")
-SOURCE_READY_TEXT_CANDIDATES = ("Ready", "Source added", "Sources added")
-GENERATE_TEXT_CANDIDATES = ("Generate", "Create", "Customize")
-PRESENTATION_TEXT_CANDIDATES = ("Slide Deck", "Presentation")
-DOWNLOAD_TEXT_CANDIDATES = ("Download PowerPoint", "PowerPoint", "PPTX", "Download")
+SLIDE_DECK_READY_TEXT_CANDIDATES = (
+    "Start slideshow",
+    "View custom prompt",
+    "Good content",
+    "開始投影片放映",
+)
