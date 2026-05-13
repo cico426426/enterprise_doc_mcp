@@ -128,7 +128,7 @@ What downside risks does the World Bank presentation mention?
 ```
 
 ```text
-What was Tesla's 2023 total revenue?
+Find Tesla total revenues for 2023, 2022, and 2021 in the revenues table.
 ```
 
 ```text
